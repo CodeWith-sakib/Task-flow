@@ -204,3 +204,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 337734f | phase 2 | gate: PASS | feat(observability): Implement comprehensive HealthRegistry with degraded state isolation |
 | 45404c4 | phase 2 | gate: PASS | feat(observability): Add MemoryWatcher for runtime heap allocation monitoring |
 | 52b6593 | phase 2 | gate: PASS | feat(concurrency): Implement AsyncSemaphore with FIFO waiter queueing |
+| f31fcfe | phase 2 | gate: PASS | feat(concurrency): Implement AsyncMutex with runExclusive helper |
