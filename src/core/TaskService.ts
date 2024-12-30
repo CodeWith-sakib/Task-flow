@@ -19,7 +19,12 @@ export class TaskService {
   ) {}
 
   async createTask(request: CreateTaskRequest): Promise<Task> {
-    const task = await this.db.createTask(request);
+    const task = await this.db.createTask({
+      ...request,
+      retryCount: 0,
+      status: TaskStatus.PENDING,
+      priority: request.priority ?? 0,
+    });
 
     await this.eventEmitter.emit(TaskEvent.CREATED, {
       taskId: task.id,
@@ -28,7 +33,7 @@ export class TaskService {
 
     // Auto-enqueue if not scheduled
     if (!task.scheduledAt) {
-      await this.enqueueTask(task.id);
+      await this.enqueueTask(task.id, task.priority);
     }
 
     return task;
