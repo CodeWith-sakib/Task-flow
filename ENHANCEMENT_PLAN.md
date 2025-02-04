@@ -1,0 +1,153 @@
+# Enhancement Plan — TaskFlow Engine
+
+## 1. Context & Objectives
+
+Following the Phase 0 audit (`AUDIT.md`), TaskFlow-Engine is an asynchronous distributed task execution engine written in TypeScript on Node.js. It currently consists of 17 source files (~741 code LOC, 930 total lines) and 7 initial synthetic commits.
+
+This plan details the systematic enhancement of the repository to an industrial-grade benchmark-ready codebase:
+- **Target Source Scale**: Extensive, production-grade first-party implementation spanning realistic subsystems.
+- **Target Commit History**: 150+ meaningful incremental commits reflecting realistic software evolution.
+- **Target Test Rigor**: Comprehensive suite across all 8 categories (Unit, Integration, API, Persistence, Concurrency, Error-handling, Boundary, End-to-End).
+- **Target Baseline**: Deterministic, 100% passing build, test, lint, type-check, and race/concurrency checks.
+- **Target Defects**: 25–30 strictly independent, reproducible engineering defects across 12 rebalanced categories with `[F2P]` and `[P2P]` test suites and Sand-style packaging.
+
+---
+
+## 2. Gap Closure Strategy & Subsystem Roadmap
+
+To grow the engine authentically without artificial filler, we introduce 11 domain-appropriate subsystems that naturally extend TaskFlow Engine's core responsibility:
+
+### Subsystem 1: Persistent Storage Engine & Adapters (`src/storage/`)
+- Abstract storage engine interface with atomic transactional semantics (`begin`, `commit`, `rollback`).
+- Disk/WAL-based append-only persistence engine with crash recovery and log compaction.
+- In-memory optimized storage with multi-index secondary lookup (status, priority, scheduledAt, tags, tenantId).
+- Cursor-based and offset-based pagination, sorting, and aggregate queries.
+
+### Subsystem 2: Advanced Queue & Dead-Letter Queue (DLQ) (`src/queue/`)
+- Two-phase dequeue with acknowledgement (`ack`), negative acknowledgement (`nack`), and visibility timeout.
+- Dead-Letter Queue (DLQ) subsystem with configurable dead-letter policies, maximum delivery attempts, failure reason metadata, manual redelivery, and purge operations.
+- Fair multi-tenant scheduling and priority-based bucket queues preventing starvation.
+
+### Subsystem 3: Workflow & Directed Acyclic Graph (DAG) Orchestration (`src/workflows/`)
+- Workflow definitions supporting multi-task DAGs with dependencies (`dependsOn`), parallel execution branches, conditional branching (`when`), and fan-out/fan-in steps.
+- Cycle detection using topological sorting (Kahn's algorithm).
+- Workflow state engine tracking overall workflow state (`PENDING`, `RUNNING`, `COMPLETED`, `FAILED`, `CANCELLED`).
+- Compensation transaction support (Saga pattern) for rolled-back steps.
+
+### Subsystem 4: Advanced Cron & Timezone Scheduler (`src/scheduler/`)
+- Full 5-field and 6-field Cron expression parser and next-run calculator.
+- Timezone-aware scheduling supporting UTC and IANA timezones.
+- Misfire handling policies (`FIRE_NOW`, `IGNORE`, `RESCHEDULE_NEXT`).
+- High-precision timer wheel preventing timer drift and heap retention.
+
+### Subsystem 5: Concurrency Control, Leases & Distributed Locks (`src/concurrency/`)
+- Mutex, semaphore, and fencing-token lease manager.
+- Heartbeat-driven lease renewal with automatic expiration on worker death.
+- Token-bucket and sliding-window rate limiting per task type and tenant.
+- Worker pool autoscaling logic based on queue depth and processing latency.
+
+### Subsystem 6: Reliable Webhook & Event Dispatcher (`src/webhooks/`)
+- Webhook subscription registry for task state transitions.
+- Reliable asynchronous HTTP dispatcher with exponential backoff and jitter.
+- HMAC-SHA256 signature generation and validation for payload tamper-proofing.
+- Circuit breaker for failing webhook destination endpoints.
+
+### Subsystem 7: Observability, Metrics & Telemetry (`src/observability/`)
+- OpenMetrics / Prometheus exposition format exporter (`/metrics`).
+- Counters, Gauges, and Histograms for queue backlog, task latency, worker utilization, and retry distribution.
+- W3C tracecontext span propagation across API, queue, and worker execution.
+- Leveled structured logger with JSON output, contextual trace IDs, and sensitive field masking.
+
+### Subsystem 8: Security, Multi-tenancy & Authentication (`src/security/`)
+- API key authentication with cryptographic hash verification and permissions/roles (Admin, Producer, Consumer, Auditor).
+- Tenant quota enforcement (concurrent tasks, queue size, webhook endpoints).
+- Strict payload validation schemas using validation primitives.
+
+### Subsystem 9: CLI Administrative & Diagnostic Tooling (`src/cli/`)
+- Command-line interface (`taskflow-cli`) for engine management:
+  - Task submission, inspection, cancellation, and re-execution.
+  - Queue monitoring, drain, pause, resume, and DLQ replay.
+  - Workflow definition linting, visualization, and execution.
+  - System diagnostics, benchmark harness, and health audit.
+
+### Subsystem 10: Read-Only Web Status Dashboard (`src/dashboard/`)
+- Minimal server-rendered visual dashboard (`/dashboard` or `/status`).
+- Real-time tabular and summary views of active workers, queue lengths, task distributions, and system throughput.
+- Provides native visual evidence surface for screenshot benchmarking.
+
+### Subsystem 11: Pluggable Middleware & Lifecycle Hooks (`src/plugins/`)
+- Plugin architecture with typed hooks: `beforeEnqueue`, `afterEnqueue`, `beforeExecute`, `afterExecute`, `onFailure`, `onStateChange`.
+- Core plugins: Payload encryption plugin, deduplication cache plugin, auto-tagging plugin.
+
+---
+
+## 3. Commit Plan (Target: 150+ Commits)
+
+All commits will be authored incrementally following real-world engineering PR sizes (10–60 lines for fixes/small additions, 100–350 lines for subsystems/features).
+
+| Phase | Planned Focus | Planned Commits | Cumulative Commits |
+|---|---|---|---|
+| **Phase 0 & Setup** | Commit audit report, untracked baseline files, type alignment fixes | 5 | 12 |
+| **Phase 2: Subsystem 1** | Persistent Storage Engine & Adapters | 10 | 22 |
+| **Phase 2: Subsystem 2** | Advanced Queue, DLQ & Visibility Timeouts | 10 | 32 |
+| **Phase 2: Subsystem 3** | Workflow & DAG Orchestration Engine | 12 | 44 |
+| **Phase 2: Subsystem 4** | Cron Scheduler & Timezone Engine | 8 | 52 |
+| **Phase 2: Subsystem 5** | Concurrency, Leases, Rate Limiters & Pools | 8 | 60 |
+| **Phase 2: Subsystem 6** | Webhooks, HMAC & Circuit Breakers | 8 | 68 |
+| **Phase 2: Subsystem 7** | Observability, Metrics & Structured Telemetry | 7 | 75 |
+| **Phase 2: Subsystem 8** | Security, Multi-Tenancy & Auth | 6 | 81 |
+| **Phase 2: Subsystem 9** | Admin & Operator CLI Tooling | 6 | 87 |
+| **Phase 2: Subsystem 10** | Status Dashboard & UI Evidence Surface | 5 | 92 |
+| **Phase 2: Subsystem 11** | Plugin System & Core Plugins | 5 | 97 |
+| **Phase 3** | Hardening pass (Input validation, resource cleanup, TODO resolution) | 12 | 109 |
+| **Phase 4** | Test-suite completion pass (API, Persistence, Concurrency, Boundary, E2E, Fuzzing) | 22 | 131 |
+| **Phase 5** | Clean-baseline verification, race/fuzz check & Golden Tag | 4 | 135 |
+| **Phase 6** | Defect catalog definition & 28 defect injections (1 commit per defect) | 28 | 163 |
+| **Phase 7** | Per-defect packaging (F2P/P2P tests, instructions, patches, evidence) | 6 | 169 |
+| **Phase 8** | Final documentation, README/CHANGELOG update & Benchmark notes | 4 | 173 |
+
+---
+
+## 4. Defect Category Distribution (Target: 28 Defects)
+
+Rebalanced specifically for TypeScript/Node.js event loop architecture:
+
+| Category | Target | Technical Mechanism & Detection Strategy |
+|---|:---:|---|
+| **1. Type-safety mistakes** | 2 | Misuse of `any` casts leading to runtime property access on undefined; interface mismatch in serialized payloads (`tsc --noEmit` + targeted test). |
+| **2. Incorrect state transitions** | 3 | Illegal state jump (e.g. `FAILED` -> `RUNNING` bypass, terminal status overwrite, self-transition cycle) (StateTransitioner tests). |
+| **3. Resource-management problems** | 3 | Missing file descriptor close on WAL rotation, timer handle leaks in scheduler, missing mutex unlock on rejected promise (Resource check test). |
+| **4. Concurrency/race conditions** | 4 | Async TOCTOU in task dequeue, race condition during concurrent task cancellation vs completion, worker lock acquisition interleaving (Concurrent multi-worker tests). |
+| **5. Stale-cache behavior** | 2 | Cache key missing tenant/version namespace, failure to invalidate task status cache on state transition (Cache invalidation integration test). |
+| **6. Boundary-condition errors** | 3 | Off-by-one in retry exhaustion limit, priority queue sorting comparator edge case on identical priority, negative backoff delay calculation (Boundary table-driven test). |
+| **7. Incorrect error propagation** | 2 | Swallowed error in webhook notification dispatcher, loss of error stack and message during serialization into task record (Error propagation test). |
+| **8. Serialization/deserialization** | 2 | Date ISO string deserialization failing to recreate `Date` object, loss of custom payload types across storage boundary (Round-trip property test). |
+| **9. Lifecycle bugs** | 2 | Worker loop hanging during graceful shutdown, scheduler job execution triggered during system terminating state (Lifecycle shutdown test). |
+| **10. Configuration mistakes** | 2 | Environment variable type coercion (`PORT` parsed as NaN, string boolean `ENABLE_METRICS="false"` evaluated as truthy) (Config precedence test). |
+| **11. Validation gaps** | 2 | Missing validation on negative priority, payload size exceeding limit without rejection, invalid cron syntax accepted (API validation negative test). |
+| **12. Memory/resource leaks** | 1 | Detached event listener accumulation on dynamic task creation, unbounded map growth in task history cache (Listener audit & heap test). |
+| **Total** | **28** | **Full 12-category coverage mapped to concrete engine failure modes.** |
+
+---
+
+## 5. Per-Commit Discipline & Gate Verification
+
+Every commit authored from Phase 2 onward will strictly verify:
+1. `npm run lint` (`tsc --noEmit`) passes with zero errors.
+2. `npm run build` (`tsc`) completes with zero errors.
+3. `npm test` passes for touched modules and their dependents.
+4. Concurrency-relevant commits pass async race/interleaving tests.
+5. Diff size does not exceed ~8% of repository LOC in a single commit.
+6. Existing tests pass unmodified on existing files.
+7. Every commit appends a record to the `## Commit Log` below with format:
+   `<short-hash> | phase <N> | gate: PASS|FIXED-FROM-PREVIOUS | <one-line summary>`
+8. Every git commit message includes the trailer:
+   `Gate: build=pass lint=pass tests=pass race=n/a`
+
+---
+
+## 6. Commit Log
+
+| Hash | Phase | Gate Status | Summary |
+|---|---|---|---|
+| 809a8dd | phase 0 | gate: PASS | docs: Add Phase 0 comprehensive repository audit |
