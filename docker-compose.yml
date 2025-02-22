@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - WORKER_CONCURRENCY=5
+      - TASK_TIMEOUT_MS=30000
+      - RETRY_BACKOFF_MS=1000
+    volumes:
+      - ./src:/app/src
+    command: npm run dev
+
+  tests:
+    build: .
+    environment:
+      - NODE_ENV=test
+    command: npm test
+    profiles:
+      - test
