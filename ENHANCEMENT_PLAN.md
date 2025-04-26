@@ -225,3 +225,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 9f9284f | phase 2 | gate: PASS | feat(storage): Implement TieredCacheManager for L1/L2 storage hierarchy |
 | 12a5064 | phase 2 | gate: PASS | feat(storage): Implement RetentionPolicyEngine for automatic data expiration |
 | 58c40ed | phase 2 | gate: PASS | feat(storage): Implement StorageMetricsCollector for I/O and latency telemetry |
+| 5e2eed5 | phase 2 | gate: PASS | feat(storage): Implement RecoveryJournal for crash consistency replay |
