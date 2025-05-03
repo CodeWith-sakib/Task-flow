@@ -226,3 +226,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 12a5064 | phase 2 | gate: PASS | feat(storage): Implement RetentionPolicyEngine for automatic data expiration |
 | 58c40ed | phase 2 | gate: PASS | feat(storage): Implement StorageMetricsCollector for I/O and latency telemetry |
 | 5e2eed5 | phase 2 | gate: PASS | feat(storage): Implement RecoveryJournal for crash consistency replay |
+| 35bdb2d | phase 2 | gate: PASS | feat(storage): Implement HashIndex for O(1) in-memory key indexing |
