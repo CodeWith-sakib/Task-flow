@@ -21,6 +21,8 @@ export interface Task {
   scheduledAt: Date | null;
   createdAt: Date;
   updatedAt: Date;
+  deadline?: Date | null;
+  priority?: number;
   error?: string;
   result?: any;
 }
@@ -31,6 +33,7 @@ export interface CreateTaskRequest {
   maxRetries?: number;
   scheduledAt?: Date | null;
   priority?: number;
+  deadline?: Date | null;
 }
 
 export interface TaskHandler {

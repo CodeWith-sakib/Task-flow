@@ -7,7 +7,7 @@ import { TaskService } from '../core/TaskService';
 
 class WorkerLock {
   private locked: boolean = false;
-  private waiting: Array<() => Promise<void>> = [];
+  private waiting: Array<() => void> = [];
 
   acquire(): Promise<void> {
     if (!this.locked) {
@@ -82,13 +82,11 @@ export class Worker {
 
       const task = await this.db.getTask(taskId);
       if (!task) {
-        this.activeCount--;
         return;
       }
 
       if (!this.scheduler.shouldRun(task)) {
         await this.queue.enqueue(taskId, -1);
-        this.activeCount--;
         return;
       }
 
