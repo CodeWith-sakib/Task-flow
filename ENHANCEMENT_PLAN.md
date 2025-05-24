@@ -229,3 +229,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 35bdb2d | phase 2 | gate: PASS | feat(storage): Implement HashIndex for O(1) in-memory key indexing |
 | da61791 | phase 2 | gate: PASS | feat(storage): Implement DiskSpaceReclaimer for temporary file cleanup |
 | 2df9f66 | phase 2 | gate: PASS | feat(queue): Implement DelayQueue with timestamp-ordered execution |
+| 58e9537 | phase 2 | gate: PASS | feat(queue): Implement BatchQueueConsumer for high-throughput batch pulling |
