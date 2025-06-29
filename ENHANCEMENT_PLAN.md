@@ -151,3 +151,11 @@ Every commit authored from Phase 2 onward will strictly verify:
 | Hash | Phase | Gate Status | Summary |
 |---|---|---|---|
 | 809a8dd | phase 0 | gate: PASS | docs: Add Phase 0 comprehensive repository audit |
+| bd38cc4 | phase 1 | gate: PASS | docs: Add Phase 1 enhancement plan and roadmap |
+| 04dd922 | phase 1 | gate: PASS | build: Add core TypeScript, Jest, environment, and container configs |
+| fe1988a | phase 1 | gate: PASS | feat(storage): Add in-memory storage, queue factory, middleware, and logging utilities |
+| 54fe1b6 | phase 1 | gate: PASS | feat(api): Add TaskController, REST routing, and TaskHandlerRegistry |
+| 6067b80 | phase 1 | gate: PASS | feat(core): Add Application bootstrapping, healthcheck, and example script |
+| 807ee4d | phase 1 | gate: PASS | test: Add baseline unit and integration test suite |
+| 2fe4152 | phase 1 | gate: PASS | fix(core): Stabilize Task priority and deadline typing, WorkerLock resolution, and active count lifecycle |
+| d01768f | phase 1 | gate: PASS | docs: Add baseline architecture, API guides, and project specification documentation |
