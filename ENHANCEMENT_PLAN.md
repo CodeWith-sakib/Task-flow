@@ -246,3 +246,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | e00bdfb | phase 2 | gate: PASS | feat(scheduler): Implement TimeZoneSupportHelper for accurate UTC offset calculations |
 | ce644ba | phase 2 | gate: PASS | feat(scheduler): Implement RecurringJobPipeline for sequenced periodic routines |
 | 23040a1 | phase 2 | gate: PASS | feat(scheduler): Implement AdaptiveTimerWheel for dynamic tick granularity |
+| 5181fc0 | phase 2 | gate: PASS | feat(scheduler): Implement ExecutionWindowGuard for maintenance timeframe gating |
