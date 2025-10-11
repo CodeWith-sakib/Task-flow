@@ -249,3 +249,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 5181fc0 | phase 2 | gate: PASS | feat(scheduler): Implement ExecutionWindowGuard for maintenance timeframe gating |
 | 673bb18 | phase 2 | gate: PASS | feat(concurrency): Implement CountDownLatch for concurrent task rendezvous |
 | 89d0d8e | phase 2 | gate: PASS | feat(concurrency): Implement StripedLock for fine-grained key concurrency |
+| dd46bbe | phase 2 | gate: PASS | feat(concurrency): Implement AdaptiveConcurrencyLimiter with AIMD adjustment |
