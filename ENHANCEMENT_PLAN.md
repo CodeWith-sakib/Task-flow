@@ -251,3 +251,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 89d0d8e | phase 2 | gate: PASS | feat(concurrency): Implement StripedLock for fine-grained key concurrency |
 | dd46bbe | phase 2 | gate: PASS | feat(concurrency): Implement AdaptiveConcurrencyLimiter with AIMD adjustment |
 | f3c2b50 | phase 2 | gate: PASS | feat(concurrency): Implement ResettableEvent for cooperative thread signaling |
+| 90e3eb9 | phase 2 | gate: PASS | feat(concurrency): Implement WorkerHeartbeatMonitor for failover detection |
