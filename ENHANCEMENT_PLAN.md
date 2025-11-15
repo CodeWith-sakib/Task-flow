@@ -254,3 +254,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 90e3eb9 | phase 2 | gate: PASS | feat(concurrency): Implement WorkerHeartbeatMonitor for failover detection |
 | a8d183b | phase 2 | gate: PASS | feat(concurrency): Implement WorkStealingPool for distributed queue balancing |
 | 61335c3 | phase 2 | gate: PASS | feat(concurrency): Implement DistributedLockSimulator with auto-renewing leases |
+| 9c09aa5 | phase 2 | gate: PASS | feat(concurrency): Implement BackoffThrottler for rate-adaptive concurrency backoff |
