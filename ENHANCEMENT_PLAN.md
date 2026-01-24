@@ -264,3 +264,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | a3d2ce1 | phase 2 | gate: PASS | feat(concurrency): Implement TaskPriorityCoordinator with anti-starvation boost |
 | de9771d | phase 2 | gate: PASS | feat(concurrency): Implement GracefulShutdownCoordinator for ordered drains |
 | 24e91cb | phase 2 | gate: PASS | feat(concurrency): Implement AtomicCounter with compare-and-swap semantics |
+| 36a7f87 | phase 2 | gate: PASS | feat(concurrency): Implement ParallelTaskExecutor with bounded parallelism |
