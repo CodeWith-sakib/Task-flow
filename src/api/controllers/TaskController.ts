@@ -7,7 +7,7 @@ export class TaskController {
 
   async createTask(req: Request, res: Response): Promise<void> {
     try {
-      const { type, payload, maxRetries, scheduledAt } = req.body;
+      const { type, payload, maxRetries, scheduledAt, priority, deadline } = req.body;
 
       if (!type || !payload) {
         res.status(400).json({ error: 'type and payload are required' });
@@ -17,8 +17,10 @@ export class TaskController {
       const request: CreateTaskRequest = {
         type,
         payload,
-        maxRetries: maxRetries ?? 3,
+        maxRetries: maxRetries !== undefined ? Number(maxRetries) : 3,
         scheduledAt: scheduledAt ? new Date(scheduledAt) : null,
+        priority: priority !== undefined ? Number(priority) : 0,
+        deadline: deadline ? new Date(deadline) : null,
       };
 
       const task = await this.taskService.createTask(request);
@@ -46,6 +48,12 @@ export class TaskController {
 
   async getAllTasks(req: Request, res: Response): Promise<void> {
     try {
+      const { status } = req.query;
+      if (status && typeof status === 'string') {
+        const tasks = await this.taskService.getTasksByStatus(status as any);
+        res.status(200).json(tasks);
+        return;
+      }
       const tasks = await this.taskService.getAllTasks();
       res.status(200).json(tasks);
     } catch (error: any) {

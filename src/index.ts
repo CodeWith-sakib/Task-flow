@@ -11,14 +11,19 @@ import { Worker } from './workers/Worker';
 import { TaskController } from './api/controllers/TaskController';
 import { createTaskRoutes } from './api/routes/taskRoutes';
 import { errorHandler, requestLogger } from './middleware';
+import { MetricsRegistry } from './observability/metrics/MetricsRegistry';
+import { StatusDashboard } from './dashboard/StatusDashboard';
 
 export class Application {
   private app: Express;
   private taskService: TaskService;
   private worker: Worker | null = null;
+  private metricsRegistry: MetricsRegistry;
+  private startTime: number = Date.now();
 
   constructor() {
     this.app = express();
+    this.metricsRegistry = new MetricsRegistry();
     this.setupMiddleware();
 
     // Initialize components
@@ -75,6 +80,49 @@ export class Application {
       res.json({ status: 'healthy', timestamp: new Date().toISOString() });
     });
 
+    // Prometheus Metrics
+    this.app.get('/metrics', (req, res) => {
+      res.setHeader('Content-Type', 'text/plain; version=0.0.4');
+      res.send(this.metricsRegistry.exportPrometheusText());
+    });
+
+    // HTML Operations Dashboard
+    this.app.get(['/status', '/dashboard'], async (req, res) => {
+      try {
+        const tasks = await this.taskService.getAllTasks();
+        const counts: Record<string, number> = {
+          pending: 0,
+          queued: 0,
+          running: 0,
+          success: 0,
+          failed: 0,
+        };
+        for (const t of tasks) {
+          counts[t.status] = (counts[t.status] || 0) + 1;
+        }
+
+        const html = StatusDashboard.renderHTML({
+          uptimeSec: (Date.now() - this.startTime) / 1000,
+          activeWorkers: this.worker?.getActiveCount() ?? 0,
+          concurrency: parseInt(process.env.WORKER_CONCURRENCY || '5', 10),
+          queueMetrics: {
+            size: counts.queued,
+            inflight: this.worker?.getActiveCount() ?? 0,
+            delayed: 0,
+            deadLettered: 0,
+            totalProcessed: counts.success + counts.failed,
+          },
+          tasksByStatus: counts as any,
+          recentTasks: tasks.slice(-20).reverse(),
+          version: '1.0.0',
+        });
+        res.setHeader('Content-Type', 'text/html');
+        res.send(html);
+      } catch (err: any) {
+        res.status(500).send(`Failed to render status dashboard: ${err.message}`);
+      }
+    });
+
     // 404 handler
     this.app.use((req, res) => {
       res.status(404).json({ error: 'Not found' });
@@ -93,6 +141,10 @@ export class Application {
 
   getWorker(): Worker | null {
     return this.worker;
+  }
+
+  getMetricsRegistry(): MetricsRegistry {
+    return this.metricsRegistry;
   }
 
   async start(port: number = 3000): Promise<void> {
