@@ -268,3 +268,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | a2098ff | phase 2 | gate: PASS | feat(concurrency): Implement LeaseAutoRenewer for background heartbeat extensions |
 | a46cbdf | phase 2 | gate: PASS | feat(workflows): Implement ParallelBranchExecutor with fail-fast and wait-all semantics |
 | 0d3578a | phase 2 | gate: PASS | feat(workflows): Implement DynamicTaskGraphEvaluator with branch pruning |
+| 6515bdc | phase 2 | gate: PASS | feat(workflows): Implement WorkflowTimeoutPolicy for granular deadline enforcement |
