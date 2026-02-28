@@ -269,3 +269,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | a46cbdf | phase 2 | gate: PASS | feat(workflows): Implement ParallelBranchExecutor with fail-fast and wait-all semantics |
 | 0d3578a | phase 2 | gate: PASS | feat(workflows): Implement DynamicTaskGraphEvaluator with branch pruning |
 | 6515bdc | phase 2 | gate: PASS | feat(workflows): Implement WorkflowTimeoutPolicy for granular deadline enforcement |
+| 8049f11 | phase 2 | gate: PASS | feat(workflows): Implement StepRetryStrategy with typed error predicate matching |
