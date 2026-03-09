@@ -98,10 +98,10 @@ export class Worker {
       });
 
       try {
-        const result = await Promise.race([
-          this.handlerRegistry.executeHandler(task.type, task.payload),
-          this.timeoutPromise(this.timeout),
-        ]);
+        const result = await this.executeWithTimeout(
+          () => this.handlerRegistry.executeHandler(task.type, task.payload),
+          this.timeout
+        );
 
         await this.taskService.processTaskResult(taskId, true, result);
       } catch (error: any) {
@@ -115,10 +115,23 @@ export class Worker {
     }
   }
 
-  private timeoutPromise(ms: number): Promise<never> {
-    return new Promise((_, reject) =>
-      setTimeout(() => reject(new Error(`Task timeout after ${ms}ms`)), ms)
-    );
+  private async executeWithTimeout<T>(
+    fn: () => Promise<T>,
+    timeoutMs: number
+  ): Promise<T> {
+    let timer: NodeJS.Timeout | null = null;
+    try {
+      const timeoutPromise = new Promise<never>((_, reject) => {
+        timer = setTimeout(() => {
+          reject(new Error(`Task timeout after ${timeoutMs}ms`));
+        }, timeoutMs);
+      });
+      return await Promise.race([fn(), timeoutPromise]);
+    } finally {
+      if (timer !== null) {
+        clearTimeout(timer);
+      }
+    }
   }
 
   private sleep(ms: number): Promise<void> {
