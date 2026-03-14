@@ -271,3 +271,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 6515bdc | phase 2 | gate: PASS | feat(workflows): Implement WorkflowTimeoutPolicy for granular deadline enforcement |
 | 8049f11 | phase 2 | gate: PASS | feat(workflows): Implement StepRetryStrategy with typed error predicate matching |
 | dc7cfe2 | phase 2 | gate: PASS | feat(workflows): Implement SubworkflowInvoker for nested orchestrations |
+| 900098a | phase 2 | gate: PASS | feat(workflows): Implement WorkflowCompensationAuditLog for saga rollback tracing |
