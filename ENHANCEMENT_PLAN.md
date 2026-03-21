@@ -272,3 +272,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 8049f11 | phase 2 | gate: PASS | feat(workflows): Implement StepRetryStrategy with typed error predicate matching |
 | dc7cfe2 | phase 2 | gate: PASS | feat(workflows): Implement SubworkflowInvoker for nested orchestrations |
 | 900098a | phase 2 | gate: PASS | feat(workflows): Implement WorkflowCompensationAuditLog for saga rollback tracing |
+| 15c7efa | phase 2 | gate: PASS | feat(workflows): Implement WorkflowStateCheckpoint for resume-from-failure execution |
