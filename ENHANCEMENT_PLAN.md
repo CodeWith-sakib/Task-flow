@@ -274,3 +274,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 900098a | phase 2 | gate: PASS | feat(workflows): Implement WorkflowCompensationAuditLog for saga rollback tracing |
 | 15c7efa | phase 2 | gate: PASS | feat(workflows): Implement WorkflowStateCheckpoint for resume-from-failure execution |
 | 807cce0 | phase 2 | gate: PASS | feat(workflows): Implement WorkflowDependencyGraph for critical path DAG topological sorting |
+| 6ad649d | phase 2 | gate: PASS | feat(workflows): Implement TaskVariableResolver for template parameter injection |
