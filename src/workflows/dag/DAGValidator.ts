@@ -14,6 +14,11 @@ export class DAGValidator {
     const inDegree = new Map<string, number>();
     const adjList = new Map<string, string[]>();
 
+    if (!workflow.steps || workflow.steps.length === 0) {
+      errors.push('Workflow must contain at least one step');
+      return { valid: false, errors, executionTiers: [], topologicalOrder: [] };
+    }
+
     // Step 1: Check unique IDs
     for (const step of workflow.steps) {
       if (stepMap.has(step.id)) {
