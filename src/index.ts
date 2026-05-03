@@ -1,8 +1,8 @@
 import express, { Express } from 'express';
 import { DatabaseFactory } from './storage/db';
 import { QueueFactory } from './queue/redis';
-import { EventEmitter } from './events/EventEmitter';
 import { StateTransitioner } from './core/state/StateTransitioner';
+import { EventEmitter, TaskEvent } from './events/EventEmitter';
 import { RetryManager } from './core/retry/RetryManager';
 import { TaskScheduler } from './core/scheduler/TaskScheduler';
 import { TaskHandlerRegistry } from './core/lifecycle/TaskHandlerRegistry';
@@ -45,6 +45,20 @@ export class Application {
       scheduler,
       handlerRegistry
     );
+
+    // Wire observability metrics
+    eventEmitter.on(TaskEvent.CREATED, () => {
+      this.metricsRegistry.incrementCounter('tasks_created_total', 'Total tasks created');
+    });
+    eventEmitter.on(TaskEvent.COMPLETED, () => {
+      this.metricsRegistry.incrementCounter('tasks_completed_total', 'Total tasks successfully completed');
+    });
+    eventEmitter.on(TaskEvent.FAILED, () => {
+      this.metricsRegistry.incrementCounter('tasks_failed_total', 'Total tasks failed');
+    });
+    eventEmitter.on(TaskEvent.RETRYING, () => {
+      this.metricsRegistry.incrementCounter('tasks_retried_total', 'Total task retries initiated');
+    });
 
     // Initialize worker
     const concurrency = parseInt(process.env.WORKER_CONCURRENCY || '5', 10);
