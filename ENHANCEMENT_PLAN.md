@@ -279,3 +279,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 86254ba | phase 2 | gate: PASS | feat(webhooks): Implement ExponentialBackoffDispatcher for resilient HTTP delivery |
 | 9677ec0 | phase 2 | gate: PASS | feat(webhooks): Implement WebhookSignatureRotator for dual-key secret rotation |
 | be37027 | phase 2 | gate: PASS | feat(webhooks): Implement WebhookDeadLetterVault for unroutable webhook persistence |
+| 1190cd7 | phase 2 | gate: PASS | feat(webhooks): Implement BatchWebhookNotifier for grouped payload notifications |
