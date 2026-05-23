@@ -281,3 +281,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | be37027 | phase 2 | gate: PASS | feat(webhooks): Implement WebhookDeadLetterVault for unroutable webhook persistence |
 | 1190cd7 | phase 2 | gate: PASS | feat(webhooks): Implement BatchWebhookNotifier for grouped payload notifications |
 | 26964c5 | phase 2 | gate: PASS | feat(webhooks): Implement WebhookPayloadTransformer for outbound schema mapping |
+| 80dc54a | phase 2 | gate: PASS | feat(security): Implement ScopedRBACOperator with hierarchical permission matrix |
