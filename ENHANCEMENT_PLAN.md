@@ -283,3 +283,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 26964c5 | phase 2 | gate: PASS | feat(webhooks): Implement WebhookPayloadTransformer for outbound schema mapping |
 | 80dc54a | phase 2 | gate: PASS | feat(security): Implement ScopedRBACOperator with hierarchical permission matrix |
 | c30298e | phase 2 | gate: PASS | feat(security): Implement PayloadHasher for deterministic message fingerprinting |
+| 50e5d42 | phase 2 | gate: PASS | feat(security): Implement TokenRevocationList for instant session invalidation |
