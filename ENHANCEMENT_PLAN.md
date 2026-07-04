@@ -287,3 +287,4 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 8cb0f78 | phase 2 | gate: PASS | feat(security): Implement SensitiveFieldMasker for PII sanitization in task logs |
 | 9f1a213 | phase 2 | gate: PASS | feat(observability): Implement SpanExporter for OpenTelemetry JSON export |
 | 4cb8157 | phase 2 | gate: PASS | feat(observability): Implement MetricHistogram with quantile percentile calculations |
+| d6360de | phase 2 | gate: PASS | feat(observability): Implement AnomalyDetector for dynamic error rate spike alerting |
