@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-019",
+  "category": "Configuration mistakes",
+  "title": "Environment variable WORKER_CONCURRENCY parsed as string or NaN causes zero worker threads",
+  "file": "src/index.ts",
+  "description": "Application parses parseInt(process.env.WORKER_CONCURRENCY) without fallback when invalid string is passed.",
+  "impact": "Worker pool starts with NaN concurrency, refusing to process any dequeued tasks.",
+  "f2p_test": "tests/e2e/FullSystemE2E.test.ts",
+  "p2p_test": "tests/api/TaskEndpoints.test.ts"
+}

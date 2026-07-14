@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-001",
+  "category": "State machine violations",
+  "title": "Permit invalid transition from PENDING directly to SUCCESS",
+  "file": "src/core/state/StateTransitioner.ts",
+  "description": "Allowing a task to skip QUEUED and RUNNING directly into SUCCESS violates transactional safety.",
+  "impact": "Tasks bypass queuing and worker execution while appearing finished.",
+  "f2p_test": "tests/error/SystemErrorHandling.test.ts",
+  "p2p_test": "tests/unit/TaskService.test.ts"
+}

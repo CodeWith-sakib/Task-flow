@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-023",
+  "category": "Memory/resource leaks",
+  "title": "EventEmitter fails to remove listeners in off() method, causing unbounded listener accumulation",
+  "file": "src/events/EventEmitter.ts",
+  "description": "off() method looks up handler by reference using incorrect index calculation, leaving listeners active.",
+  "impact": "Node.js MaxListenersExceededWarning and memory leak under high task churn.",
+  "f2p_test": "tests/error/SystemErrorHandling.test.ts",
+  "p2p_test": "tests/integration/lifecycle.test.ts"
+}

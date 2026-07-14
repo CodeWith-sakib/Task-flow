@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-008",
+  "category": "Queue and stream processing errors",
+  "title": "VisibilityQueue priority sorting inverted: lower priority tasks dequeued ahead of critical tasks",
+  "file": "src/queue/visibility/VisibilityQueue.ts",
+  "description": "Sorting sorts ascending by priority instead of descending.",
+  "impact": "Critical priority tasks starve behind low-priority batch jobs.",
+  "f2p_test": "tests/unit/VisibilityQueue.test.ts",
+  "p2p_test": "tests/boundary/BoundaryConditions.test.ts"
+}

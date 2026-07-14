@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-011",
+  "category": "Security and authorization defects",
+  "title": "ApiKeyManager allows unauthorized tenant access due to missing role permission check",
+  "file": "src/security/auth/ApiKeyManager.ts",
+  "description": "Role check validates read permissions for write operations (e.g. read-only key allowed to create tasks).",
+  "impact": "Unauthorized tenants perform destructive or state-modifying operations.",
+  "f2p_test": "tests/unit/ApiKeyManager.test.ts",
+  "p2p_test": "tests/unit/TenantQuotaManager.test.ts"
+}

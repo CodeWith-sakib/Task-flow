@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-015",
+  "category": "Performance and backpressure regressions",
+  "title": "TokenBucketRateLimiter refills tokens on elapsed time calculation without floor bounds",
+  "file": "src/concurrency/limiter/TokenBucketRateLimiter.ts",
+  "description": "Token refilling allows tokens to exceed bucket capacity when burst arrives after long idle period.",
+  "impact": "Unbounded burst traffic overwhelms worker queues and breaches upstream rate limits.",
+  "f2p_test": "tests/unit/TokenBucketRateLimiter.test.ts",
+  "p2p_test": "tests/boundary/BoundaryConditions.test.ts"
+}

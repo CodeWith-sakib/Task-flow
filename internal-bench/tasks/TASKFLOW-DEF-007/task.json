@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-007",
+  "category": "Queue and stream processing errors",
+  "title": "DeadLetterQueue routes poisoned tasks to main queue instead of DLQ on max delivery exhaustion",
+  "file": "src/queue/visibility/VisibilityQueue.ts",
+  "description": "When deliveryCount reaches maxDeliveries, NACK re-enqueues rather than routing to DLQ.",
+  "impact": "Poison pills cause infinite retry loops exhausting worker resources.",
+  "f2p_test": "tests/boundary/BoundaryConditions.test.ts",
+  "p2p_test": "tests/unit/VisibilityQueue.test.ts"
+}

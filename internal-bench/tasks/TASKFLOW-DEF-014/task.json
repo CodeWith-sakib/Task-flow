@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-014",
+  "category": "Observability and tracing breaks",
+  "title": "MetricsRegistry histogram bucketing records NaN when negative latency values occur",
+  "file": "src/observability/metrics/MetricsRegistry.ts",
+  "description": "Histogram observeHistogram does not validate duration >= 0, corrupting metric output.",
+  "impact": "Prometheus scraper fails to parse metrics endpoint due to NaN bucket counts.",
+  "f2p_test": "tests/unit/MetricsRegistry.test.ts",
+  "p2p_test": "tests/e2e/FullSystemE2E.test.ts"
+}

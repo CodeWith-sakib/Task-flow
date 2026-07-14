@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-016",
+  "category": "Performance and backpressure regressions",
+  "title": "WorkerPoolAutoscaler scales down to 0 concurrency even when queue depth exceeds threshold",
+  "file": "src/concurrency/pool/WorkerPoolAutoscaler.ts",
+  "description": "Autoscaler math evaluates target concurrency to zero instead of clamping to minConcurrency.",
+  "impact": "Worker pool completely stops processing tasks during high queue pressure.",
+  "f2p_test": "tests/boundary/BoundaryConditions.test.ts",
+  "p2p_test": "tests/integration/worker.test.ts"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-027",
+  "category": "Security and authorization defects",
+  "title": "TenantQuotaManager allows tenant to exceed maxConcurrentTasks quota",
+  "file": "src/security/tenant/TenantQuotaManager.ts",
+  "description": "Quota check checks > instead of >= against maxConcurrentTasks.",
+  "impact": "Tenants exceed provisioned resource limits, causing noisy-neighbor degradation.",
+  "f2p_test": "tests/unit/TenantQuotaManager.test.ts",
+  "p2p_test": "tests/unit/ApiKeyManager.test.ts"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-002",
+  "category": "State machine violations",
+  "title": "Terminal FAILED state incorrectly permits transition back to RUNNING",
+  "file": "src/core/state/StateTransitioner.ts",
+  "description": "Once a task exhausts retries and enters FAILED, it must be terminal unless explicitly resurrected via replay.",
+  "impact": "Violates state machine invariants and causes zombie worker executions.",
+  "f2p_test": "tests/error/SystemErrorHandling.test.ts",
+  "p2p_test": "tests/unit/TaskService.test.ts"
+}

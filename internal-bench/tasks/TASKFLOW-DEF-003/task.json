@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-003",
+  "category": "Concurrency and race conditions",
+  "title": "Double dequeue race condition in VisibilityQueue during concurrent dequeue calls",
+  "file": "src/queue/visibility/VisibilityQueue.ts",
+  "description": "Concurrent workers pop the same item before visibleAfter timestamp update is written.",
+  "impact": "Multiple workers execute the same task concurrently, causing duplicate side effects.",
+  "f2p_test": "tests/boundary/BoundaryConditions.test.ts",
+  "p2p_test": "tests/unit/VisibilityQueue.test.ts"
+}

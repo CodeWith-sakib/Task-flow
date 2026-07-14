@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-021",
+  "category": "Validation gaps",
+  "title": "TaskService accepts negative maxRetries and negative priority values",
+  "file": "src/core/TaskService.ts",
+  "description": "CreateTaskRequest payload validation fails to reject negative priority and retry limits.",
+  "impact": "Negative retries corrupt retry counter math and lead to immediate task drops.",
+  "f2p_test": "tests/unit/TaskService.test.ts",
+  "p2p_test": "tests/api/TaskEndpoints.test.ts"
+}

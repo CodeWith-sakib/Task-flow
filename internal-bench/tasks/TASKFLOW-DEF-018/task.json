@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-018",
+  "category": "Lifecycle bugs",
+  "title": "TaskScheduler fires cron callbacks while scheduler status is STOPPED",
+  "file": "src/scheduler/CronScheduler.ts",
+  "description": "Interval timer continues executing scheduled jobs after stop() method has been called.",
+  "impact": "Scheduler continues executing tasks after application shutdown has initiated.",
+  "f2p_test": "tests/unit/CronScheduler.test.ts",
+  "p2p_test": "tests/unit/TaskScheduler.test.ts"
+}

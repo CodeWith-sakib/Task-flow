@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-017",
+  "category": "Lifecycle bugs",
+  "title": "Worker stop() resolves immediately while active tasks are still processing",
+  "file": "src/workers/Worker.ts",
+  "description": "Graceful shutdown does not wait for in-flight tasks to complete before setting isRunning = false.",
+  "impact": "In-flight tasks are abruptly terminated or left in unacknowledged zombie state upon SIGTERM.",
+  "f2p_test": "tests/integration/worker.test.ts",
+  "p2p_test": "tests/integration/lifecycle.test.ts"
+}

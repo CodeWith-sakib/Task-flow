@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-013",
+  "category": "Observability and tracing breaks",
+  "title": "TraceContext parent span ID dropped during asynchronous context propagation",
+  "file": "src/observability/tracing/TraceContext.ts",
+  "description": "Trace headers serialize traceparent without the parentSpanId field or zero-pads incorrectly.",
+  "impact": "Distributed traces are broken; child spans appear as root spans.",
+  "f2p_test": "tests/unit/TraceContext.test.ts",
+  "p2p_test": "tests/unit/MetricsRegistry.test.ts"
+}

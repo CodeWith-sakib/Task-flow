@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-026",
+  "category": "Concurrency and race conditions",
+  "title": "WorkerLock release fails to notify queued waiters when lock holder errors out",
+  "file": "src/workers/Worker.ts",
+  "description": "When task execution throws an exception, lock release hook is bypassed, causing deadlock.",
+  "impact": "Worker permanently locks up after the first encountered task failure.",
+  "f2p_test": "tests/integration/worker.test.ts",
+  "p2p_test": "tests/integration/lifecycle.test.ts"
+}

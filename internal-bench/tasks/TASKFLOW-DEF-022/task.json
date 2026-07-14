@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-022",
+  "category": "Validation gaps",
+  "title": "CronParser accepts out-of-range month value (e.g., month 13 or 0) without throwing error",
+  "file": "src/scheduler/cron/CronParser.ts",
+  "description": "Field range check allows values outside 1-12 for month field.",
+  "impact": "Invalid cron schedules cause getNextRun to loop forever or crash at runtime.",
+  "f2p_test": "tests/unit/CronParser.test.ts",
+  "p2p_test": "tests/fuzz/CronAndDAGFuzz.test.ts"
+}

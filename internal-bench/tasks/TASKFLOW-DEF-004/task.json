@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-004",
+  "category": "Concurrency and race conditions",
+  "title": "Lease fencing token fails to monotonically increment on lease renewal",
+  "file": "src/concurrency/lease/LeaseManager.ts",
+  "description": "Re-acquiring an expired lease reuses the old fence token instead of incrementing, allowing split-brain zombie writes.",
+  "impact": "Downstream storage engines accept stale writes from timed-out workers.",
+  "f2p_test": "tests/unit/LeaseManager.test.ts",
+  "p2p_test": "tests/unit/LeaseManager.test.ts"
+}

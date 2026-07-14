@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-024",
+  "category": "State machine violations",
+  "title": "Task retry count not incremented when moving from RUNNING back to RETRYING",
+  "file": "src/core/TaskService.ts",
+  "description": "StateTransitioner allows retry transition without bumping retryCount in task record.",
+  "impact": "Tasks retry indefinitely, ignoring maxRetries limits.",
+  "f2p_test": "tests/unit/RetryManager.test.ts",
+  "p2p_test": "tests/integration/lifecycle.test.ts"
+}

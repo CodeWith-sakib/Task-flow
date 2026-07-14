@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-012",
+  "category": "Security and authorization defects",
+  "title": "HMAC webhook signature computation uses hardcoded salt or skips payload bytes",
+  "file": "src/webhooks/crypto/hmac.ts",
+  "description": "Signature generation signs empty string or omits secret key from HMAC-SHA256 digest.",
+  "impact": "Forged webhook payloads are accepted by downstream receivers.",
+  "f2p_test": "tests/unit/WebhookHMAC.test.ts",
+  "p2p_test": "tests/unit/WebhookDispatcher.test.ts"
+}

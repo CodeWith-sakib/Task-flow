@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-006",
+  "category": "Persistence and transaction bugs",
+  "title": "SecondaryIndex fails to clean old status index when a task status is updated",
+  "file": "src/storage/index/SecondaryIndex.ts",
+  "description": "Updating a task status leaves the task ID in the previous status set, resulting in ghost results.",
+  "impact": "Querying tasks by status returns tasks that are no longer in that status.",
+  "f2p_test": "tests/unit/SecondaryIndex.test.ts",
+  "p2p_test": "tests/boundary/BoundaryConditions.test.ts"
+}

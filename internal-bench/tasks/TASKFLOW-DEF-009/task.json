@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-009",
+  "category": "Workflow DAG and scheduling errors",
+  "title": "DAGValidator fails to detect cyclic dependencies in workflow steps",
+  "file": "src/workflows/dag/DAGValidator.ts",
+  "description": "Topological sort does not report error when in-degree reduction loop fails to resolve all nodes.",
+  "impact": "Workflow execution hangs indefinitely waiting on unresolved cyclical dependencies.",
+  "f2p_test": "tests/unit/DAGValidator.test.ts",
+  "p2p_test": "tests/integration/WorkflowEngine.test.ts"
+}

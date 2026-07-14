@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-025",
+  "category": "Workflow DAG and scheduling errors",
+  "title": "Workflow step with failed condition filter ('when' clause) causes entire workflow to fail",
+  "file": "src/workflows/WorkflowEngine.ts",
+  "description": "A step whose 'when' conditional evaluates to false should be skipped, but instead marks step as FAILED.",
+  "impact": "Conditional branch workflows cannot skip optional steps without failing the parent workflow.",
+  "f2p_test": "tests/integration/WorkflowEngine.test.ts",
+  "p2p_test": "tests/unit/DAGValidator.test.ts"
+}

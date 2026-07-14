@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-005",
+  "category": "Persistence and transaction bugs",
+  "title": "Corrupted WAL record replay passes validation when CRC32 checksum verification is skipped",
+  "file": "src/storage/wal/WALStorageEngine.ts",
+  "description": "Replaying WAL log skips CRC32 checksum check, deserializing truncated and corrupted bytes.",
+  "impact": "Silent state corruption and invalid task structures restored after crash.",
+  "f2p_test": "tests/persistence/WALStorageEngine.test.ts",
+  "p2p_test": "tests/unit/WALDatabaseAdapter.test.ts"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-010",
+  "category": "Workflow DAG and scheduling errors",
+  "title": "Saga compensation execution skipped when intermediate step fails",
+  "file": "src/workflows/WorkflowEngine.ts",
+  "description": "WorkflowEngine fails to invoke rollback compensations in reverse topological order upon step failure.",
+  "impact": "Partial execution leaves external side-effects uncompensated, causing distributed state inconsistency.",
+  "f2p_test": "tests/integration/WorkflowEngine.test.ts",
+  "p2p_test": "tests/unit/DAGValidator.test.ts"
+}

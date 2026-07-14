@@ -1,0 +1,10 @@
+{
+  "id": "TASKFLOW-DEF-020",
+  "category": "Configuration mistakes",
+  "title": "Default visibility timeout defaults to negative or zero milliseconds",
+  "file": "src/queue/visibility/VisibilityQueue.ts",
+  "description": "Default visibility timeout set to 0ms instead of 30,000ms, causing immediate message redelivery.",
+  "impact": "Dequeued messages are instantly visible again, causing infinite reprocessing thrash.",
+  "f2p_test": "tests/boundary/BoundaryConditions.test.ts",
+  "p2p_test": "tests/unit/VisibilityQueue.test.ts"
+}
