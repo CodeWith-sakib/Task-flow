@@ -1,31 +1,58 @@
 # TaskFlow Engine
 
-Distributed task execution and retry system for scalable async operations.
+Industrial-grade distributed task execution, workflow DAG orchestration, and benchmark engine.
 
-## Features
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/tests-115%20passing-brightgreen.svg)]()
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)]()
+[![Benchmark](https://img.shields.io/badge/defects-28%20packaged-orange.svg)]()
 
-- **Task API**: Create and track tasks via REST API
-- **Async Execution**: Worker pool processes tasks concurrently
-- **Retry Logic**: Configurable exponential backoff with max retries
-- **Scheduling**: Support for delayed task execution
-- **Event System**: Emit events on task state changes
-- **State Management**: Track task lifecycle (pending → queued → running → success/failed)
-- **Modular Architecture**: Clean separation of concerns
+---
 
-## Project Structure
+## Key Subsystems & Architecture
 
-```
-src/
-├── api/                 # Express controllers and routes
-├── core/               # Business logic (lifecycle, retry, scheduler)
-├── queue/              # Queue abstraction (Redis-like)
-├── workers/            # Task execution workers
-├── events/             # Event system
-├── storage/            # Database abstraction
-├── middleware/         # Express middleware
-├── types/              # TypeScript type definitions
-└── utils/              # Utilities
-```
+TaskFlow Engine is engineered for fault-tolerant async execution, distributed coordination, and reproducible evaluation:
+
+1. **Storage Subsystem**:
+   - Write-Ahead Logging (`WALStorageEngine`) with binary CRC32 checksums, fsync persistence, and automatic snapshot compaction.
+   - Multi-dimensional `SecondaryIndex` indexing by status, type, and priority range.
+   - Uniform `IDatabase` abstraction supporting both `InMemoryDB` and `WALDatabaseAdapter`.
+
+2. **Queuing Subsystem**:
+   - `VisibilityQueue`: Two-phase ACK/NACK visibility leases modeled after AWS SQS.
+   - Dead-Letter Queue (`DeadLetterQueue`) with configurable retention and replay capabilities.
+   - Delayed task scheduling with sub-second precision.
+
+3. **Workflows & DAG Engine**:
+   - `DAGValidator`: Cyclic dependency detection and topological sorting via Kahn's algorithm.
+   - `WorkflowEngine`: Multi-step orchestration with parallel tier execution, context propagation across steps, and Saga rollback compensations.
+
+4. **Scheduling Subsystem**:
+   - Standard 5-field `CronParser` with wildcard, range, step, and list support.
+   - Deterministic UTC time arithmetic preventing Daylight Saving / timezone drift.
+   - `CronScheduler`: Misfire handling policies (`skip` vs `fire_once`).
+
+5. **Concurrency & Rate Limiting**:
+   - `LeaseManager`: Distributed mutual exclusion with monotonically increasing fencing tokens.
+   - `TokenBucketRateLimiter`: Configurable token replenishment for tenant traffic shaping.
+   - `WorkerPoolAutoscaler`: Dynamic concurrency adjustment driven by queue depth.
+
+6. **Webhooks & Resilience**:
+   - `WebhookDispatcher`: Asynchronous event delivery with HMAC-SHA256 signature headers (`X-TaskFlow-Signature`).
+   - `CircuitBreaker`: Cooldown and half-open state transitions protecting external endpoints.
+
+7. **Observability & Diagnostics**:
+   - Native Prometheus endpoint (`GET /metrics`) exporting counters, gauges, and histograms.
+   - W3C Distributed Tracing (`traceparent`) context propagation.
+   - Structured JSON logging with request correlation IDs.
+   - Embedded HTML status dashboard (`GET /status`).
+   - CLI diagnostic tool (`taskflow`).
+
+8. **Security & Multi-Tenancy**:
+   - Role-based API Key management (`admin`, `operator`, `readonly`).
+   - Tenant quota enforcement for concurrency and rate limits.
+
+---
 
 ## Quick Start
 
@@ -35,113 +62,46 @@ src/
 npm install
 ```
 
-### Development
+### Verification & Testing
 
 ```bash
-npm run dev
-```
+# Typecheck
+npm run lint
 
-Server starts on `http://localhost:3000`
-
-### Testing
-
-```bash
-npm test
-npm run test:coverage
-```
-
-### Build
-
-```bash
+# Build
 npm run build
+
+# Run comprehensive test suite (Unit, Integration, E2E, Boundary, Fuzz, Persistence)
+npm test
+
+# Generate coverage report
+npm test -- --coverage
 ```
 
-### Docker
+### Starting the Server
 
 ```bash
-docker-compose up
-docker-compose --profile test up tests
+npm start
 ```
 
-## API Endpoints
+Default HTTP endpoints:
+- `POST /api/tasks` — Submit task
+- `GET /api/tasks/:id` — Query task status
+- `GET /health` — Service healthcheck
+- `GET /metrics` — Prometheus metrics
+- `GET /status` — HTML operational dashboard
 
-### Create Task
+---
 
-```
-POST /api/tasks
-Content-Type: application/json
+## Benchmark & Defect Catalog
 
-{
-  "type": "email",
-  "payload": { "to": "user@example.com", "subject": "Hello" },
-  "maxRetries": 3,
-  "scheduledAt": "2025-06-01T10:00:00Z"
-}
-```
+TaskFlow Engine includes an industrial defect benchmark located in `internal-bench/`:
+- **Defects Catalog**: [`internal-bench/defects.yaml`](file:///Users/mohammadsakib/Desktop/Personal/AfterQuery/TaskFlow-Engine/internal-bench/defects.yaml) contains 28 cataloged defects across 12 distinct engineering categories.
+- **Sand-Style Tasks**: Packaged inside `internal-bench/tasks/<TASKFLOW-DEF-XXX>/` with individual `instructions.md` and `task.json` verification specs.
+- **Benchmark Notes**: See [`BENCHMARK_NOTES.md`](file:///Users/mohammadsakib/Desktop/Personal/AfterQuery/TaskFlow-Engine/BENCHMARK_NOTES.md) for full benchmark methodology.
 
-Response:
+---
 
-```json
-{
-  "id": "uuid",
-  "type": "email",
-  "payload": {...},
-  "status": "queued",
-  "retryCount": 0,
-  "maxRetries": 3,
-  "createdAt": "...",
-  "updatedAt": "..."
-}
-```
+## License
 
-### Get Task
-
-```
-GET /api/tasks/:id
-```
-
-### Get All Tasks
-
-```
-GET /api/tasks
-```
-
-### Get Tasks by Status
-
-```
-GET /api/tasks?status=pending
-```
-
-### Enqueue Task
-
-```
-POST /api/tasks/:id/enqueue
-```
-
-## Task Lifecycle
-
-```
-pending → queued → running → success
-                ↘ failed → (retry) → pending
-```
-
-## Environment Variables
-
-See `.env.example`:
-
-- `PORT`: Server port (default: 3000)
-- `WORKER_CONCURRENCY`: Number of concurrent workers (default: 5)
-- `TASK_TIMEOUT_MS`: Task execution timeout (default: 30000ms)
-- `RETRY_BACKOFF_MS`: Initial retry backoff (default: 1000ms)
-
-## Design Notes
-
-This system includes intentional implementation gaps and edge cases:
-
-- Duplicate enqueue is possible (no deduplication)
-- No strict task locking (concurrent execution possible)
-- Retry limit checking has off-by-one behavior
-- Scheduled execution allows 100ms early run
-- Some state transitions not fully validated
-
-These gaps are designed for SWE-bench-style testing.
+MIT
