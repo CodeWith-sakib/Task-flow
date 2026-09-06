@@ -159,3 +159,36 @@ Every commit authored from Phase 2 onward will strictly verify:
 | 807ee4d | phase 1 | gate: PASS | test: Add baseline unit and integration test suite |
 | 2fe4152 | phase 1 | gate: PASS | fix(core): Stabilize Task priority and deadline typing, WorkerLock resolution, and active count lifecycle |
 | d01768f | phase 1 | gate: PASS | docs: Add baseline architecture, API guides, and project specification documentation |
+| 114900c | phase 1 | gate: PASS | docs: Update Commit Log with Phase 0 and baseline initialization commits |
+| 90b5465 | phase 2 | gate: PASS | feat(storage): Add SecondaryIndex for multi-dimensional task attribute querying |
+| 77b23ab | phase 2 | gate: PASS | feat(storage): Implement WALStorageEngine with CRC32 checksums, replay recovery, and snapshot compaction |
+| e221689 | phase 2 | gate: PASS | feat(storage): Add IDatabase interface and WALDatabaseAdapter to DatabaseFactory |
+| b823429 | phase 2 | gate: PASS | feat(queue): Add VisibilityQueue with ACK/NACK two-phase visibility and DeadLetterQueue |
+| 40c6e69 | phase 2 | gate: PASS | feat(workflows): Implement WorkflowEngine with DAG topological validation, context propagation, and Saga compensations |
+| 49432e7 | phase 2 | gate: PASS | feat(scheduler): Implement CronParser and CronScheduler with misfire policies and deterministic scheduling |
+| 56eb53f | phase 2 | gate: PASS | feat(concurrency): Add LeaseManager with fencing tokens, TokenBucketRateLimiter, and WorkerPoolAutoscaler |
+| 9e01270 | phase 2 | gate: PASS | feat(webhooks): Add WebhookDispatcher with HMAC-SHA256 signature verification and CircuitBreaker |
+| 15eb1af | phase 2 | gate: PASS | feat(observability): Add Prometheus MetricsRegistry, W3C TraceContext propagation, and StructuredLogger |
+| 7b74e47 | phase 2 | gate: PASS | feat(security): Add ApiKeyManager with role authorization and TenantQuotaManager |
+| 193dc7e | phase 2 | gate: PASS | feat(cli): Add StatusDashboard HTML renderer and TaskFlowCLI diagnostic tool |
+| 2d8479c | phase 2 | gate: PASS | feat(plugins): Add PluginManager with lifecycle hooks and DeduplicationPlugin |
+| 16e10a6 | phase 2 | gate: PASS | feat(api): Integrate Prometheus metrics and StatusDashboard into Express app with API integration tests |
+| dd3ab22 | phase 3 | gate: PASS | fix(workers): Ensure deterministic timer cleanup via executeWithTimeout to prevent event loop leaks |
+| b0e3d1e | phase 4 | gate: PASS | test(error): Add comprehensive error handling and fault resilience test suite |
+| a1ba483 | phase 4 | gate: PASS | test(boundary): Add boundary and edge condition test suite for queues, cron, limits, and DAGs |
+| c8611ba | phase 4 | gate: PASS | test(e2e): Add full system end-to-end integration and metrics pipeline test suite |
+| e19667b | phase 4 | gate: PASS | test(fuzz): Add property-based fuzz test suite for cron expressions and DAG topological execution |
+| 4f05180 | phase 4 | gate: PASS | test(coverage): Add comprehensive unit tests for WebhookDispatcher and WALDatabaseAdapter |
+| e0f1310 | phase 6 | gate: PASS | docs(bench): Author internal-bench/defects.yaml catalog with 28 targeted engineering defects across 12 categories |
+| f802b05 | phase 7 | gate: PASS | feat(bench): Package all 28 defects into Sand-style benchmark tasks with instructions and verification specs |
+| f15c563 | phase 8 | gate: PASS | docs: Author comprehensive README.md and BENCHMARK_NOTES.md detailing system architecture and evaluation |
+| d57b5b2 | phase 8 | gate: PASS | docs: Add CHANGELOG.md and CONTRIBUTING.md documenting project releases and standards |
+
+
+
+
+
+
+
+
+
