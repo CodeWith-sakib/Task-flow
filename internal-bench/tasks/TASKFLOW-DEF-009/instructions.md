@@ -13,9 +13,10 @@ Topological sort does not report error when in-degree reduction loop fails to re
 Workflow execution hangs indefinitely waiting on unresolved cyclical dependencies.
 
 ## Verification Protocol
-1. Verify reproduction with defect test:
-   `npx jest tests/unit/DAGValidator.test.ts`
-2. Verify preservation of non-regressing behaviors:
-   `npx jest tests/integration/WorkflowEngine.test.ts`
+1. Verify reproduction with defect test (F2P):
+   - `npx jest tests/unit/DAGValidator.test.ts`
+2. Verify preservation of non-regressing behaviors (P2P):
+   - `npx jest tests/integration/WorkflowEngine.test.ts`
+   - `npx jest tests/fuzz/CronAndDAGFuzz.test.ts`
 3. Verify full system build and test suite pass:
-   `npm run lint && npm run build && npm test`
+   - `npm run lint && npm run build && npm test`

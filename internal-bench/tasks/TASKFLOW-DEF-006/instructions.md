@@ -13,9 +13,10 @@ Updating a task status leaves the task ID in the previous status set, resulting 
 Querying tasks by status returns tasks that are no longer in that status.
 
 ## Verification Protocol
-1. Verify reproduction with defect test:
-   `npx jest tests/unit/SecondaryIndex.test.ts`
-2. Verify preservation of non-regressing behaviors:
-   `npx jest tests/boundary/BoundaryConditions.test.ts`
+1. Verify reproduction with defect test (F2P):
+   - `npx jest tests/unit/SecondaryIndex.test.ts`
+2. Verify preservation of non-regressing behaviors (P2P):
+   - `npx jest tests/boundary/BoundaryConditions.test.ts`
+   - `npx jest tests/unit/TaskService.test.ts`
 3. Verify full system build and test suite pass:
-   `npm run lint && npm run build && npm test`
+   - `npm run lint && npm run build && npm test`

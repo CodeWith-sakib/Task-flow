@@ -13,9 +13,10 @@ Trace headers serialize traceparent without the parentSpanId field or zero-pads 
 Distributed traces are broken; child spans appear as root spans.
 
 ## Verification Protocol
-1. Verify reproduction with defect test:
-   `npx jest tests/unit/TraceContext.test.ts`
-2. Verify preservation of non-regressing behaviors:
-   `npx jest tests/unit/MetricsRegistry.test.ts`
+1. Verify reproduction with defect test (F2P):
+   - `npx jest tests/unit/TraceContext.test.ts`
+2. Verify preservation of non-regressing behaviors (P2P):
+   - `npx jest tests/unit/MetricsRegistry.test.ts`
+   - `npx jest tests/unit/SpanExporter.test.ts`
 3. Verify full system build and test suite pass:
-   `npm run lint && npm run build && npm test`
+   - `npm run lint && npm run build && npm test`

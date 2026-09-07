@@ -13,9 +13,10 @@ Role check validates read permissions for write operations (e.g. read-only key a
 Unauthorized tenants perform destructive or state-modifying operations.
 
 ## Verification Protocol
-1. Verify reproduction with defect test:
-   `npx jest tests/unit/ApiKeyManager.test.ts`
-2. Verify preservation of non-regressing behaviors:
-   `npx jest tests/unit/TenantQuotaManager.test.ts`
+1. Verify reproduction with defect test (F2P):
+   - `npx jest tests/unit/ApiKeyManager.test.ts`
+2. Verify preservation of non-regressing behaviors (P2P):
+   - `npx jest tests/unit/TenantQuotaManager.test.ts`
+   - `npx jest tests/unit/ScopedRBACOperator.test.ts`
 3. Verify full system build and test suite pass:
-   `npm run lint && npm run build && npm test`
+   - `npm run lint && npm run build && npm test`

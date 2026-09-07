@@ -6,5 +6,12 @@
   "description": "Once a task exhausts retries and enters FAILED, it must be terminal unless explicitly resurrected via replay.",
   "impact": "Violates state machine invariants and causes zombie worker executions.",
   "f2p_test": "tests/error/SystemErrorHandling.test.ts",
-  "p2p_test": "tests/unit/TaskService.test.ts"
+  "p2p_test": "tests/unit/TaskService.test.ts",
+  "f2p_tests": [
+    "tests/error/SystemErrorHandling.test.ts"
+  ],
+  "p2p_tests": [
+    "tests/unit/TaskService.test.ts",
+    "tests/unit/RetryManager.test.ts"
+  ]
 }

@@ -6,5 +6,12 @@
   "description": "StateTransitioner allows retry transition without bumping retryCount in task record.",
   "impact": "Tasks retry indefinitely, ignoring maxRetries limits.",
   "f2p_test": "tests/unit/RetryManager.test.ts",
-  "p2p_test": "tests/integration/lifecycle.test.ts"
+  "p2p_test": "tests/integration/lifecycle.test.ts",
+  "f2p_tests": [
+    "tests/unit/RetryManager.test.ts"
+  ],
+  "p2p_tests": [
+    "tests/integration/lifecycle.test.ts",
+    "tests/unit/TaskService.test.ts"
+  ]
 }

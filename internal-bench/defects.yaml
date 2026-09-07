@@ -7,6 +7,11 @@ defects:
     impact: "Tasks bypass queuing and worker execution while appearing finished."
     f2p_test: "tests/error/SystemErrorHandling.test.ts"
     p2p_test: "tests/unit/TaskService.test.ts"
+    f2p_tests:
+      - "tests/error/SystemErrorHandling.test.ts"
+    p2p_tests:
+      - "tests/unit/TaskService.test.ts"
+      - "tests/integration/lifecycle.test.ts"
 
   - id: "TASKFLOW-DEF-002"
     category: "State machine violations"
@@ -16,6 +21,11 @@ defects:
     impact: "Violates state machine invariants and causes zombie worker executions."
     f2p_test: "tests/error/SystemErrorHandling.test.ts"
     p2p_test: "tests/unit/TaskService.test.ts"
+    f2p_tests:
+      - "tests/error/SystemErrorHandling.test.ts"
+    p2p_tests:
+      - "tests/unit/TaskService.test.ts"
+      - "tests/unit/RetryManager.test.ts"
 
   - id: "TASKFLOW-DEF-003"
     category: "Concurrency and race conditions"
@@ -25,6 +35,11 @@ defects:
     impact: "Multiple workers execute the same task concurrently, causing duplicate side effects."
     f2p_test: "tests/boundary/BoundaryConditions.test.ts"
     p2p_test: "tests/unit/VisibilityQueue.test.ts"
+    f2p_tests:
+      - "tests/boundary/BoundaryConditions.test.ts"
+    p2p_tests:
+      - "tests/unit/VisibilityQueue.test.ts"
+      - "tests/integration/worker.test.ts"
 
   - id: "TASKFLOW-DEF-004"
     category: "Concurrency and race conditions"
@@ -33,7 +48,12 @@ defects:
     description: "Re-acquiring an expired lease reuses the old fence token instead of incrementing, allowing split-brain zombie writes."
     impact: "Downstream storage engines accept stale writes from timed-out workers."
     f2p_test: "tests/unit/LeaseManager.test.ts"
-    p2p_test: "tests/unit/LeaseManager.test.ts"
+    p2p_test: "tests/unit/LeaseAutoRenewer.test.ts"
+    f2p_tests:
+      - "tests/unit/LeaseManager.test.ts"
+    p2p_tests:
+      - "tests/unit/LeaseAutoRenewer.test.ts"
+      - "tests/integration/worker.test.ts"
 
   - id: "TASKFLOW-DEF-005"
     category: "Persistence and transaction bugs"
@@ -43,6 +63,11 @@ defects:
     impact: "Silent state corruption and invalid task structures restored after crash."
     f2p_test: "tests/persistence/WALStorageEngine.test.ts"
     p2p_test: "tests/unit/WALDatabaseAdapter.test.ts"
+    f2p_tests:
+      - "tests/persistence/WALStorageEngine.test.ts"
+    p2p_tests:
+      - "tests/unit/WALDatabaseAdapter.test.ts"
+      - "tests/unit/ChecksumValidator.test.ts"
 
   - id: "TASKFLOW-DEF-006"
     category: "Persistence and transaction bugs"
@@ -52,6 +77,11 @@ defects:
     impact: "Querying tasks by status returns tasks that are no longer in that status."
     f2p_test: "tests/unit/SecondaryIndex.test.ts"
     p2p_test: "tests/boundary/BoundaryConditions.test.ts"
+    f2p_tests:
+      - "tests/unit/SecondaryIndex.test.ts"
+    p2p_tests:
+      - "tests/boundary/BoundaryConditions.test.ts"
+      - "tests/unit/TaskService.test.ts"
 
   - id: "TASKFLOW-DEF-007"
     category: "Queue and stream processing errors"
@@ -61,6 +91,11 @@ defects:
     impact: "Poison pills cause infinite retry loops exhausting worker resources."
     f2p_test: "tests/boundary/BoundaryConditions.test.ts"
     p2p_test: "tests/unit/VisibilityQueue.test.ts"
+    f2p_tests:
+      - "tests/boundary/BoundaryConditions.test.ts"
+    p2p_tests:
+      - "tests/unit/VisibilityQueue.test.ts"
+      - "tests/unit/DLQReprocessor.test.ts"
 
   - id: "TASKFLOW-DEF-008"
     category: "Queue and stream processing errors"
@@ -70,6 +105,11 @@ defects:
     impact: "Critical priority tasks starve behind low-priority batch jobs."
     f2p_test: "tests/unit/VisibilityQueue.test.ts"
     p2p_test: "tests/boundary/BoundaryConditions.test.ts"
+    f2p_tests:
+      - "tests/unit/VisibilityQueue.test.ts"
+    p2p_tests:
+      - "tests/boundary/BoundaryConditions.test.ts"
+      - "tests/unit/PriorityHeap.test.ts"
 
   - id: "TASKFLOW-DEF-009"
     category: "Workflow DAG and scheduling errors"
@@ -79,6 +119,11 @@ defects:
     impact: "Workflow execution hangs indefinitely waiting on unresolved cyclical dependencies."
     f2p_test: "tests/unit/DAGValidator.test.ts"
     p2p_test: "tests/integration/WorkflowEngine.test.ts"
+    f2p_tests:
+      - "tests/unit/DAGValidator.test.ts"
+    p2p_tests:
+      - "tests/integration/WorkflowEngine.test.ts"
+      - "tests/fuzz/CronAndDAGFuzz.test.ts"
 
   - id: "TASKFLOW-DEF-010"
     category: "Workflow DAG and scheduling errors"
@@ -88,6 +133,11 @@ defects:
     impact: "Partial execution leaves external side-effects uncompensated, causing distributed state inconsistency."
     f2p_test: "tests/integration/WorkflowEngine.test.ts"
     p2p_test: "tests/unit/DAGValidator.test.ts"
+    f2p_tests:
+      - "tests/integration/WorkflowEngine.test.ts"
+    p2p_tests:
+      - "tests/unit/DAGValidator.test.ts"
+      - "tests/unit/WorkflowCompensationAuditLog.test.ts"
 
   - id: "TASKFLOW-DEF-011"
     category: "Security and authorization defects"
@@ -97,6 +147,11 @@ defects:
     impact: "Unauthorized tenants perform destructive or state-modifying operations."
     f2p_test: "tests/unit/ApiKeyManager.test.ts"
     p2p_test: "tests/unit/TenantQuotaManager.test.ts"
+    f2p_tests:
+      - "tests/unit/ApiKeyManager.test.ts"
+    p2p_tests:
+      - "tests/unit/TenantQuotaManager.test.ts"
+      - "tests/unit/ScopedRBACOperator.test.ts"
 
   - id: "TASKFLOW-DEF-012"
     category: "Security and authorization defects"
@@ -106,6 +161,11 @@ defects:
     impact: "Forged webhook payloads are accepted by downstream receivers."
     f2p_test: "tests/unit/WebhookHMAC.test.ts"
     p2p_test: "tests/unit/WebhookDispatcher.test.ts"
+    f2p_tests:
+      - "tests/unit/WebhookHMAC.test.ts"
+    p2p_tests:
+      - "tests/unit/WebhookDispatcher.test.ts"
+      - "tests/unit/WebhookSignatureRotator.test.ts"
 
   - id: "TASKFLOW-DEF-013"
     category: "Observability and tracing breaks"
@@ -115,6 +175,11 @@ defects:
     impact: "Distributed traces are broken; child spans appear as root spans."
     f2p_test: "tests/unit/TraceContext.test.ts"
     p2p_test: "tests/unit/MetricsRegistry.test.ts"
+    f2p_tests:
+      - "tests/unit/TraceContext.test.ts"
+    p2p_tests:
+      - "tests/unit/MetricsRegistry.test.ts"
+      - "tests/unit/SpanExporter.test.ts"
 
   - id: "TASKFLOW-DEF-014"
     category: "Observability and tracing breaks"
@@ -124,6 +189,11 @@ defects:
     impact: "Prometheus scraper fails to parse metrics endpoint due to NaN bucket counts."
     f2p_test: "tests/unit/MetricsRegistry.test.ts"
     p2p_test: "tests/e2e/FullSystemE2E.test.ts"
+    f2p_tests:
+      - "tests/unit/MetricsRegistry.test.ts"
+    p2p_tests:
+      - "tests/e2e/FullSystemE2E.test.ts"
+      - "tests/unit/MetricHistogram.test.ts"
 
   - id: "TASKFLOW-DEF-015"
     category: "Performance and backpressure regressions"
@@ -133,6 +203,11 @@ defects:
     impact: "Unbounded burst traffic overwhelms worker queues and breaches upstream rate limits."
     f2p_test: "tests/unit/TokenBucketRateLimiter.test.ts"
     p2p_test: "tests/boundary/BoundaryConditions.test.ts"
+    f2p_tests:
+      - "tests/unit/TokenBucketRateLimiter.test.ts"
+    p2p_tests:
+      - "tests/boundary/BoundaryConditions.test.ts"
+      - "tests/unit/SlidingWindowRateLimiter.test.ts"
 
   - id: "TASKFLOW-DEF-016"
     category: "Performance and backpressure regressions"
@@ -142,6 +217,11 @@ defects:
     impact: "Worker pool completely stops processing tasks during high queue pressure."
     f2p_test: "tests/boundary/BoundaryConditions.test.ts"
     p2p_test: "tests/integration/worker.test.ts"
+    f2p_tests:
+      - "tests/boundary/BoundaryConditions.test.ts"
+    p2p_tests:
+      - "tests/integration/worker.test.ts"
+      - "tests/unit/WorkerPoolMetrics.test.ts"
 
   - id: "TASKFLOW-DEF-017"
     category: "Lifecycle bugs"
@@ -151,6 +231,11 @@ defects:
     impact: "In-flight tasks are abruptly terminated or left in unacknowledged zombie state upon SIGTERM."
     f2p_test: "tests/integration/worker.test.ts"
     p2p_test: "tests/integration/lifecycle.test.ts"
+    f2p_tests:
+      - "tests/integration/worker.test.ts"
+    p2p_tests:
+      - "tests/integration/lifecycle.test.ts"
+      - "tests/unit/GracefulShutdownCoordinator.test.ts"
 
   - id: "TASKFLOW-DEF-018"
     category: "Lifecycle bugs"
@@ -160,6 +245,11 @@ defects:
     impact: "Scheduler continues executing tasks after application shutdown has initiated."
     f2p_test: "tests/unit/CronScheduler.test.ts"
     p2p_test: "tests/unit/TaskScheduler.test.ts"
+    f2p_tests:
+      - "tests/unit/CronScheduler.test.ts"
+    p2p_tests:
+      - "tests/unit/TaskScheduler.test.ts"
+      - "tests/unit/DynamicScheduleTrigger.test.ts"
 
   - id: "TASKFLOW-DEF-019"
     category: "Configuration mistakes"
@@ -169,6 +259,11 @@ defects:
     impact: "Worker pool starts with NaN concurrency, refusing to process any dequeued tasks."
     f2p_test: "tests/e2e/FullSystemE2E.test.ts"
     p2p_test: "tests/api/TaskEndpoints.test.ts"
+    f2p_tests:
+      - "tests/e2e/FullSystemE2E.test.ts"
+    p2p_tests:
+      - "tests/api/TaskEndpoints.test.ts"
+      - "tests/unit/TaskFlowCLI.test.ts"
 
   - id: "TASKFLOW-DEF-020"
     category: "Configuration mistakes"
@@ -178,6 +273,11 @@ defects:
     impact: "Dequeued messages are instantly visible again, causing infinite reprocessing thrash."
     f2p_test: "tests/boundary/BoundaryConditions.test.ts"
     p2p_test: "tests/unit/VisibilityQueue.test.ts"
+    f2p_tests:
+      - "tests/boundary/BoundaryConditions.test.ts"
+    p2p_tests:
+      - "tests/unit/VisibilityQueue.test.ts"
+      - "tests/unit/DelayQueue.test.ts"
 
   - id: "TASKFLOW-DEF-021"
     category: "Validation gaps"
@@ -187,6 +287,11 @@ defects:
     impact: "Negative retries corrupt retry counter math and lead to immediate task drops."
     f2p_test: "tests/unit/TaskService.test.ts"
     p2p_test: "tests/api/TaskEndpoints.test.ts"
+    f2p_tests:
+      - "tests/unit/TaskService.test.ts"
+    p2p_tests:
+      - "tests/api/TaskEndpoints.test.ts"
+      - "tests/unit/SchemaValidator.test.ts"
 
   - id: "TASKFLOW-DEF-022"
     category: "Validation gaps"
@@ -196,6 +301,11 @@ defects:
     impact: "Invalid cron schedules cause getNextRun to loop forever or crash at runtime."
     f2p_test: "tests/unit/CronParser.test.ts"
     p2p_test: "tests/fuzz/CronAndDAGFuzz.test.ts"
+    f2p_tests:
+      - "tests/unit/CronParser.test.ts"
+    p2p_tests:
+      - "tests/fuzz/CronAndDAGFuzz.test.ts"
+      - "tests/unit/CronCalendar.test.ts"
 
   - id: "TASKFLOW-DEF-023"
     category: "Memory/resource leaks"
@@ -205,6 +315,11 @@ defects:
     impact: "Node.js MaxListenersExceededWarning and memory leak under high task churn."
     f2p_test: "tests/error/SystemErrorHandling.test.ts"
     p2p_test: "tests/integration/lifecycle.test.ts"
+    f2p_tests:
+      - "tests/error/SystemErrorHandling.test.ts"
+    p2p_tests:
+      - "tests/integration/lifecycle.test.ts"
+      - "tests/unit/EventStore.test.ts"
 
   - id: "TASKFLOW-DEF-024"
     category: "State machine violations"
@@ -214,6 +329,11 @@ defects:
     impact: "Tasks retry indefinitely, ignoring maxRetries limits."
     f2p_test: "tests/unit/RetryManager.test.ts"
     p2p_test: "tests/integration/lifecycle.test.ts"
+    f2p_tests:
+      - "tests/unit/RetryManager.test.ts"
+    p2p_tests:
+      - "tests/integration/lifecycle.test.ts"
+      - "tests/unit/TaskService.test.ts"
 
   - id: "TASKFLOW-DEF-025"
     category: "Workflow DAG and scheduling errors"
@@ -223,6 +343,11 @@ defects:
     impact: "Conditional branch workflows cannot skip optional steps without failing the parent workflow."
     f2p_test: "tests/integration/WorkflowEngine.test.ts"
     p2p_test: "tests/unit/DAGValidator.test.ts"
+    f2p_tests:
+      - "tests/integration/WorkflowEngine.test.ts"
+    p2p_tests:
+      - "tests/unit/DAGValidator.test.ts"
+      - "tests/unit/DynamicTaskGraphEvaluator.test.ts"
 
   - id: "TASKFLOW-DEF-026"
     category: "Concurrency and race conditions"
@@ -232,6 +357,11 @@ defects:
     impact: "Worker permanently locks up after the first encountered task failure."
     f2p_test: "tests/integration/worker.test.ts"
     p2p_test: "tests/integration/lifecycle.test.ts"
+    f2p_tests:
+      - "tests/integration/worker.test.ts"
+    p2p_tests:
+      - "tests/integration/lifecycle.test.ts"
+      - "tests/unit/AsyncMutex.test.ts"
 
   - id: "TASKFLOW-DEF-027"
     category: "Security and authorization defects"
@@ -241,6 +371,11 @@ defects:
     impact: "Tenants exceed provisioned resource limits, causing noisy-neighbor degradation."
     f2p_test: "tests/unit/TenantQuotaManager.test.ts"
     p2p_test: "tests/unit/ApiKeyManager.test.ts"
+    f2p_tests:
+      - "tests/unit/TenantQuotaManager.test.ts"
+    p2p_tests:
+      - "tests/unit/ApiKeyManager.test.ts"
+      - "tests/unit/ScopedRBACOperator.test.ts"
 
   - id: "TASKFLOW-DEF-028"
     category: "Persistence and transaction bugs"
@@ -250,3 +385,9 @@ defects:
     impact: "Recently created tasks between checkpoint and compaction are silently lost."
     f2p_test: "tests/persistence/WALStorageEngine.test.ts"
     p2p_test: "tests/unit/WALDatabaseAdapter.test.ts"
+    f2p_tests:
+      - "tests/persistence/WALStorageEngine.test.ts"
+    p2p_tests:
+      - "tests/unit/WALDatabaseAdapter.test.ts"
+      - "tests/unit/RecoveryJournal.test.ts"
+

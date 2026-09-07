@@ -6,5 +6,12 @@
   "description": "Field range check allows values outside 1-12 for month field.",
   "impact": "Invalid cron schedules cause getNextRun to loop forever or crash at runtime.",
   "f2p_test": "tests/unit/CronParser.test.ts",
-  "p2p_test": "tests/fuzz/CronAndDAGFuzz.test.ts"
+  "p2p_test": "tests/fuzz/CronAndDAGFuzz.test.ts",
+  "f2p_tests": [
+    "tests/unit/CronParser.test.ts"
+  ],
+  "p2p_tests": [
+    "tests/fuzz/CronAndDAGFuzz.test.ts",
+    "tests/unit/CronCalendar.test.ts"
+  ]
 }

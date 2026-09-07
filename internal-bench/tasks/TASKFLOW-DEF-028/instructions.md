@@ -13,9 +13,10 @@ Compaction overwrites task index with snapshot state before flushing remaining l
 Recently created tasks between checkpoint and compaction are silently lost.
 
 ## Verification Protocol
-1. Verify reproduction with defect test:
-   `npx jest tests/persistence/WALStorageEngine.test.ts`
-2. Verify preservation of non-regressing behaviors:
-   `npx jest tests/unit/WALDatabaseAdapter.test.ts`
+1. Verify reproduction with defect test (F2P):
+   - `npx jest tests/persistence/WALStorageEngine.test.ts`
+2. Verify preservation of non-regressing behaviors (P2P):
+   - `npx jest tests/unit/WALDatabaseAdapter.test.ts`
+   - `npx jest tests/unit/RecoveryJournal.test.ts`
 3. Verify full system build and test suite pass:
-   `npm run lint && npm run build && npm test`
+   - `npm run lint && npm run build && npm test`

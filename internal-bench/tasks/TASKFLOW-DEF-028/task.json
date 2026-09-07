@@ -6,5 +6,12 @@
   "description": "Compaction overwrites task index with snapshot state before flushing remaining log tail.",
   "impact": "Recently created tasks between checkpoint and compaction are silently lost.",
   "f2p_test": "tests/persistence/WALStorageEngine.test.ts",
-  "p2p_test": "tests/unit/WALDatabaseAdapter.test.ts"
+  "p2p_test": "tests/unit/WALDatabaseAdapter.test.ts",
+  "f2p_tests": [
+    "tests/persistence/WALStorageEngine.test.ts"
+  ],
+  "p2p_tests": [
+    "tests/unit/WALDatabaseAdapter.test.ts",
+    "tests/unit/RecoveryJournal.test.ts"
+  ]
 }

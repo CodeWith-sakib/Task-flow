@@ -13,9 +13,10 @@ Token refilling allows tokens to exceed bucket capacity when burst arrives after
 Unbounded burst traffic overwhelms worker queues and breaches upstream rate limits.
 
 ## Verification Protocol
-1. Verify reproduction with defect test:
-   `npx jest tests/unit/TokenBucketRateLimiter.test.ts`
-2. Verify preservation of non-regressing behaviors:
-   `npx jest tests/boundary/BoundaryConditions.test.ts`
+1. Verify reproduction with defect test (F2P):
+   - `npx jest tests/unit/TokenBucketRateLimiter.test.ts`
+2. Verify preservation of non-regressing behaviors (P2P):
+   - `npx jest tests/boundary/BoundaryConditions.test.ts`
+   - `npx jest tests/unit/SlidingWindowRateLimiter.test.ts`
 3. Verify full system build and test suite pass:
-   `npm run lint && npm run build && npm test`
+   - `npm run lint && npm run build && npm test`

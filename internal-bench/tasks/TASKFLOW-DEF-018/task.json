@@ -6,5 +6,12 @@
   "description": "Interval timer continues executing scheduled jobs after stop() method has been called.",
   "impact": "Scheduler continues executing tasks after application shutdown has initiated.",
   "f2p_test": "tests/unit/CronScheduler.test.ts",
-  "p2p_test": "tests/unit/TaskScheduler.test.ts"
+  "p2p_test": "tests/unit/TaskScheduler.test.ts",
+  "f2p_tests": [
+    "tests/unit/CronScheduler.test.ts"
+  ],
+  "p2p_tests": [
+    "tests/unit/TaskScheduler.test.ts",
+    "tests/unit/DynamicScheduleTrigger.test.ts"
+  ]
 }

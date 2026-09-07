@@ -6,5 +6,12 @@
   "description": "Replaying WAL log skips CRC32 checksum check, deserializing truncated and corrupted bytes.",
   "impact": "Silent state corruption and invalid task structures restored after crash.",
   "f2p_test": "tests/persistence/WALStorageEngine.test.ts",
-  "p2p_test": "tests/unit/WALDatabaseAdapter.test.ts"
+  "p2p_test": "tests/unit/WALDatabaseAdapter.test.ts",
+  "f2p_tests": [
+    "tests/persistence/WALStorageEngine.test.ts"
+  ],
+  "p2p_tests": [
+    "tests/unit/WALDatabaseAdapter.test.ts",
+    "tests/unit/ChecksumValidator.test.ts"
+  ]
 }

@@ -13,9 +13,10 @@ Replaying WAL log skips CRC32 checksum check, deserializing truncated and corrup
 Silent state corruption and invalid task structures restored after crash.
 
 ## Verification Protocol
-1. Verify reproduction with defect test:
-   `npx jest tests/persistence/WALStorageEngine.test.ts`
-2. Verify preservation of non-regressing behaviors:
-   `npx jest tests/unit/WALDatabaseAdapter.test.ts`
+1. Verify reproduction with defect test (F2P):
+   - `npx jest tests/persistence/WALStorageEngine.test.ts`
+2. Verify preservation of non-regressing behaviors (P2P):
+   - `npx jest tests/unit/WALDatabaseAdapter.test.ts`
+   - `npx jest tests/unit/ChecksumValidator.test.ts`
 3. Verify full system build and test suite pass:
-   `npm run lint && npm run build && npm test`
+   - `npm run lint && npm run build && npm test`

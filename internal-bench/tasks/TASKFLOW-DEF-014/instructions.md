@@ -13,9 +13,10 @@ Histogram observeHistogram does not validate duration >= 0, corrupting metric ou
 Prometheus scraper fails to parse metrics endpoint due to NaN bucket counts.
 
 ## Verification Protocol
-1. Verify reproduction with defect test:
-   `npx jest tests/unit/MetricsRegistry.test.ts`
-2. Verify preservation of non-regressing behaviors:
-   `npx jest tests/e2e/FullSystemE2E.test.ts`
+1. Verify reproduction with defect test (F2P):
+   - `npx jest tests/unit/MetricsRegistry.test.ts`
+2. Verify preservation of non-regressing behaviors (P2P):
+   - `npx jest tests/e2e/FullSystemE2E.test.ts`
+   - `npx jest tests/unit/MetricHistogram.test.ts`
 3. Verify full system build and test suite pass:
-   `npm run lint && npm run build && npm test`
+   - `npm run lint && npm run build && npm test`

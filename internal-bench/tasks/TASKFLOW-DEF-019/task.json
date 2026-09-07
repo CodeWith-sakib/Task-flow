@@ -6,5 +6,12 @@
   "description": "Application parses parseInt(process.env.WORKER_CONCURRENCY) without fallback when invalid string is passed.",
   "impact": "Worker pool starts with NaN concurrency, refusing to process any dequeued tasks.",
   "f2p_test": "tests/e2e/FullSystemE2E.test.ts",
-  "p2p_test": "tests/api/TaskEndpoints.test.ts"
+  "p2p_test": "tests/api/TaskEndpoints.test.ts",
+  "f2p_tests": [
+    "tests/e2e/FullSystemE2E.test.ts"
+  ],
+  "p2p_tests": [
+    "tests/api/TaskEndpoints.test.ts",
+    "tests/unit/TaskFlowCLI.test.ts"
+  ]
 }

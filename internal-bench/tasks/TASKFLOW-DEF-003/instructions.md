@@ -13,9 +13,10 @@ Concurrent workers pop the same item before visibleAfter timestamp update is wri
 Multiple workers execute the same task concurrently, causing duplicate side effects.
 
 ## Verification Protocol
-1. Verify reproduction with defect test:
-   `npx jest tests/boundary/BoundaryConditions.test.ts`
-2. Verify preservation of non-regressing behaviors:
-   `npx jest tests/unit/VisibilityQueue.test.ts`
+1. Verify reproduction with defect test (F2P):
+   - `npx jest tests/boundary/BoundaryConditions.test.ts`
+2. Verify preservation of non-regressing behaviors (P2P):
+   - `npx jest tests/unit/VisibilityQueue.test.ts`
+   - `npx jest tests/integration/worker.test.ts`
 3. Verify full system build and test suite pass:
-   `npm run lint && npm run build && npm test`
+   - `npm run lint && npm run build && npm test`

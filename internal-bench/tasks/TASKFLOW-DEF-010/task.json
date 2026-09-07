@@ -6,5 +6,12 @@
   "description": "WorkflowEngine fails to invoke rollback compensations in reverse topological order upon step failure.",
   "impact": "Partial execution leaves external side-effects uncompensated, causing distributed state inconsistency.",
   "f2p_test": "tests/integration/WorkflowEngine.test.ts",
-  "p2p_test": "tests/unit/DAGValidator.test.ts"
+  "p2p_test": "tests/unit/DAGValidator.test.ts",
+  "f2p_tests": [
+    "tests/integration/WorkflowEngine.test.ts"
+  ],
+  "p2p_tests": [
+    "tests/unit/DAGValidator.test.ts",
+    "tests/unit/WorkflowCompensationAuditLog.test.ts"
+  ]
 }

@@ -13,9 +13,10 @@ CreateTaskRequest payload validation fails to reject negative priority and retry
 Negative retries corrupt retry counter math and lead to immediate task drops.
 
 ## Verification Protocol
-1. Verify reproduction with defect test:
-   `npx jest tests/unit/TaskService.test.ts`
-2. Verify preservation of non-regressing behaviors:
-   `npx jest tests/api/TaskEndpoints.test.ts`
+1. Verify reproduction with defect test (F2P):
+   - `npx jest tests/unit/TaskService.test.ts`
+2. Verify preservation of non-regressing behaviors (P2P):
+   - `npx jest tests/api/TaskEndpoints.test.ts`
+   - `npx jest tests/unit/SchemaValidator.test.ts`
 3. Verify full system build and test suite pass:
-   `npm run lint && npm run build && npm test`
+   - `npm run lint && npm run build && npm test`
