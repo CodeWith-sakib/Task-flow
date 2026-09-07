@@ -150,157 +150,157 @@ Every commit authored from Phase 2 onward will strictly verify:
 
 | Hash | Phase | Gate Status | Summary |
 |---|---|---|---|
-| 809a8dd | phase 0 | gate: PASS | docs: Add Phase 0 comprehensive repository audit |
-| bd38cc4 | phase 1 | gate: PASS | docs: Add Phase 1 enhancement plan and roadmap |
-| 04dd922 | phase 1 | gate: PASS | build: Add core TypeScript, Jest, environment, and container configs |
-| fe1988a | phase 1 | gate: PASS | feat(storage): Add in-memory storage, queue factory, middleware, and logging utilities |
-| 54fe1b6 | phase 1 | gate: PASS | feat(api): Add TaskController, REST routing, and TaskHandlerRegistry |
-| 6067b80 | phase 1 | gate: PASS | feat(core): Add Application bootstrapping, healthcheck, and example script |
-| 807ee4d | phase 1 | gate: PASS | test: Add baseline unit and integration test suite |
-| 2fe4152 | phase 1 | gate: PASS | fix(core): Stabilize Task priority and deadline typing, WorkerLock resolution, and active count lifecycle |
-| d01768f | phase 1 | gate: PASS | docs: Add baseline architecture, API guides, and project specification documentation |
-| 114900c | phase 1 | gate: PASS | docs: Update Commit Log with Phase 0 and baseline initialization commits |
-| 90b5465 | phase 2 | gate: PASS | feat(storage): Add SecondaryIndex for multi-dimensional task attribute querying |
-| 77b23ab | phase 2 | gate: PASS | feat(storage): Implement WALStorageEngine with CRC32 checksums, replay recovery, and snapshot compaction |
-| e221689 | phase 2 | gate: PASS | feat(storage): Add IDatabase interface and WALDatabaseAdapter to DatabaseFactory |
-| b823429 | phase 2 | gate: PASS | feat(queue): Add VisibilityQueue with ACK/NACK two-phase visibility and DeadLetterQueue |
-| 40c6e69 | phase 2 | gate: PASS | feat(workflows): Implement WorkflowEngine with DAG topological validation, context propagation, and Saga compensations |
-| 49432e7 | phase 2 | gate: PASS | feat(scheduler): Implement CronParser and CronScheduler with misfire policies and deterministic scheduling |
-| 56eb53f | phase 2 | gate: PASS | feat(concurrency): Add LeaseManager with fencing tokens, TokenBucketRateLimiter, and WorkerPoolAutoscaler |
-| 9e01270 | phase 2 | gate: PASS | feat(webhooks): Add WebhookDispatcher with HMAC-SHA256 signature verification and CircuitBreaker |
-| 15eb1af | phase 2 | gate: PASS | feat(observability): Add Prometheus MetricsRegistry, W3C TraceContext propagation, and StructuredLogger |
-| 7b74e47 | phase 2 | gate: PASS | feat(security): Add ApiKeyManager with role authorization and TenantQuotaManager |
-| 193dc7e | phase 2 | gate: PASS | feat(cli): Add StatusDashboard HTML renderer and TaskFlowCLI diagnostic tool |
-| 2d8479c | phase 2 | gate: PASS | feat(plugins): Add PluginManager with lifecycle hooks and DeduplicationPlugin |
-| 16e10a6 | phase 2 | gate: PASS | feat(api): Integrate Prometheus metrics and StatusDashboard into Express app with API integration tests |
-| dd3ab22 | phase 3 | gate: PASS | fix(workers): Ensure deterministic timer cleanup via executeWithTimeout to prevent event loop leaks |
-| b0e3d1e | phase 4 | gate: PASS | test(error): Add comprehensive error handling and fault resilience test suite |
-| a1ba483 | phase 4 | gate: PASS | test(boundary): Add boundary and edge condition test suite for queues, cron, limits, and DAGs |
-| c8611ba | phase 4 | gate: PASS | test(e2e): Add full system end-to-end integration and metrics pipeline test suite |
-| e19667b | phase 4 | gate: PASS | test(fuzz): Add property-based fuzz test suite for cron expressions and DAG topological execution |
-| 4f05180 | phase 4 | gate: PASS | test(coverage): Add comprehensive unit tests for WebhookDispatcher and WALDatabaseAdapter |
-| e0f1310 | phase 6 | gate: PASS | docs(bench): Author internal-bench/defects.yaml catalog with 28 targeted engineering defects across 12 categories |
-| f802b05 | phase 7 | gate: PASS | feat(bench): Package all 28 defects into Sand-style benchmark tasks with instructions and verification specs |
-| f15c563 | phase 8 | gate: PASS | docs: Author comprehensive README.md and BENCHMARK_NOTES.md detailing system architecture and evaluation |
-| d57b5b2 | phase 8 | gate: PASS | docs: Add CHANGELOG.md and CONTRIBUTING.md documenting project releases and standards |
-
-
-
-
-
-
-
-
-
-| cb38e1c | phase 2 | gate: PASS | feat(storage): Implement probabilistic BloomFilter for rapid task deduplication checks |
-| 4744ab8 | phase 2 | gate: PASS | feat(storage): Implement high-performance bounded LRUCache for task metadata |
-| 4fd99f8 | phase 2 | gate: PASS | feat(core): Implement JitteredBackoff with full, equal, and decorrelated jitter strategies |
-| 04b17d7 | phase 2 | gate: PASS | feat(concurrency): Implement SlidingWindowRateLimiter for sliding-log rate control |
-| ec5f01e | phase 2 | gate: PASS | feat(queue): Implement binary PriorityHeap with FIFO tie-breaking for O(log n) task enqueuing |
-| 29749c3 | phase 2 | gate: PASS | feat(security): Implement SchemaValidator for declarative task payload verification |
-| 761a1c3 | phase 2 | gate: PASS | feat(queue): Implement fixed-size RingBuffer for ultra-low allocation worker dispatch |
-| 28bbadb | phase 2 | gate: PASS | feat(plugins): Implement AES-256-GCM EncryptionPlugin for sensitive payload protection |
-| 3cf4a23 | phase 2 | gate: PASS | feat(events): Implement EventStore for immutable audit logging and event sourcing |
-| 337734f | phase 2 | gate: PASS | feat(observability): Implement comprehensive HealthRegistry with degraded state isolation |
-| 45404c4 | phase 2 | gate: PASS | feat(observability): Add MemoryWatcher for runtime heap allocation monitoring |
-| 52b6593 | phase 2 | gate: PASS | feat(concurrency): Implement AsyncSemaphore with FIFO waiter queueing |
-| f31fcfe | phase 2 | gate: PASS | feat(concurrency): Implement AsyncMutex with runExclusive helper |
-| c67c610 | phase 2 | gate: PASS | feat(concurrency): Implement writer-priority ReadWriteLock |
-| 62c78f1 | phase 2 | gate: PASS | feat(scheduler): Implement Hashed Hierarchical TimerWheel for sub-millisecond timer dispatch |
-| c500887 | phase 2 | gate: PASS | feat(utils): Implement SnowflakeIdGenerator for ordered 64-bit cluster unique IDs |
-| 82d7d1b | phase 2 | gate: PASS | feat(storage): Implement MemTable with ordered key scanning and byte size tracking |
-| 659c3d2 | phase 2 | gate: PASS | feat(storage): Implement SSTableReader with binary search and range scanning |
-| 4369198 | phase 2 | gate: PASS | feat(storage): Implement KeyPrefixIterator for namespace-aware scanning |
-| e1a78c9 | phase 2 | gate: PASS | feat(storage): Implement SnapshotManager for point-in-time state recovery |
-| 112b2ef | phase 2 | gate: PASS | feat(storage): Implement TombstoneCompactor for expired deletion purging |
-| d0d2625 | phase 2 | gate: PASS | feat(storage): Implement BinarySerializer with compact type encoding |
-| a79529b | phase 2 | gate: PASS | feat(storage): Implement ChecksumValidator with Adler32 and CRC32 support |
-| 57225af | phase 2 | gate: PASS | feat(storage): Implement FileLockCoordinator for cooperative process locking |
-| 9bffb2e | phase 2 | gate: PASS | feat(storage): Implement ReadRepairCoordinator for replica consistency healing |
-| d170d50 | phase 2 | gate: PASS | feat(storage): Implement BlockCompressionCodec with run-length encoding |
-| fdd86e1 | phase 2 | gate: PASS | feat(storage): Implement TransactionIsolationManager for conflict detection |
-| b260f6f | phase 2 | gate: PASS | feat(storage): Implement TwoPhaseCommitCoordinator for atomic multi-shard transactions |
-| f3ad568 | phase 2 | gate: PASS | feat(storage): Implement WriteBatchBuffer for amortized disk writes |
-| 5a1b5ee | phase 2 | gate: PASS | feat(storage): Implement IndexCursor for bidirectional range traversal |
-| 9f9284f | phase 2 | gate: PASS | feat(storage): Implement TieredCacheManager for L1/L2 storage hierarchy |
-| 12a5064 | phase 2 | gate: PASS | feat(storage): Implement RetentionPolicyEngine for automatic data expiration |
-| 58c40ed | phase 2 | gate: PASS | feat(storage): Implement StorageMetricsCollector for I/O and latency telemetry |
-| 5e2eed5 | phase 2 | gate: PASS | feat(storage): Implement RecoveryJournal for crash consistency replay |
-| 35bdb2d | phase 2 | gate: PASS | feat(storage): Implement HashIndex for O(1) in-memory key indexing |
-| da61791 | phase 2 | gate: PASS | feat(storage): Implement DiskSpaceReclaimer for temporary file cleanup |
-| 2df9f66 | phase 2 | gate: PASS | feat(queue): Implement DelayQueue with timestamp-ordered execution |
-| 58e9537 | phase 2 | gate: PASS | feat(queue): Implement BatchQueueConsumer for high-throughput batch pulling |
-| 91aee4d | phase 2 | gate: PASS | feat(queue): Implement PriorityPartitionedQueue for fair multi-partition priority dispatch |
-| eb8df75 | phase 2 | gate: PASS | feat(queue): Implement QueueBackpressureController for admission flow control |
-| a60c364 | phase 2 | gate: PASS | feat(queue): Implement DLQReprocessor with max redelivery quarantine |
-| 7efe9eb | phase 2 | gate: PASS | feat(queue): Implement FairShareScheduler for multi-tenant round-robin servicing |
-| c5976ad | phase 2 | gate: PASS | feat(queue): Implement CircularRingQueue for zero-allocation task buffering |
-| f8ad1a8 | phase 2 | gate: PASS | feat(queue): Implement MessageDeduplicator with sliding expiration window |
-| 663deff | phase 2 | gate: PASS | feat(queue): Implement FifoTopicChannel for ordered stream partitioning |
-| 3e896d4 | phase 2 | gate: PASS | feat(queue): Implement PoisonMessageQuarantine for defective payload isolation |
-| 8c2c16b | phase 2 | gate: PASS | feat(scheduler): Implement CronCalendar with holiday and blackout window exclusions |
-| 07b9814 | phase 2 | gate: PASS | feat(scheduler): Implement DynamicScheduleTrigger for runtime cadence modification |
-| 67afa24 | phase 2 | gate: PASS | feat(scheduler): Implement JitteredIntervalScheduler to eliminate herd thundering |
-| a7e96a1 | phase 2 | gate: PASS | feat(scheduler): Implement ScheduleDriftDetector for clock skew analysis |
-| ca7ab6f | phase 2 | gate: PASS | feat(scheduler): Implement MissedExecutionPolicy for flexible catch-up handling |
-| e00bdfb | phase 2 | gate: PASS | feat(scheduler): Implement TimeZoneSupportHelper for accurate UTC offset calculations |
-| ce644ba | phase 2 | gate: PASS | feat(scheduler): Implement RecurringJobPipeline for sequenced periodic routines |
-| 23040a1 | phase 2 | gate: PASS | feat(scheduler): Implement AdaptiveTimerWheel for dynamic tick granularity |
-| 5181fc0 | phase 2 | gate: PASS | feat(scheduler): Implement ExecutionWindowGuard for maintenance timeframe gating |
-| 673bb18 | phase 2 | gate: PASS | feat(concurrency): Implement CountDownLatch for concurrent task rendezvous |
-| 89d0d8e | phase 2 | gate: PASS | feat(concurrency): Implement StripedLock for fine-grained key concurrency |
-| dd46bbe | phase 2 | gate: PASS | feat(concurrency): Implement AdaptiveConcurrencyLimiter with AIMD adjustment |
-| f3c2b50 | phase 2 | gate: PASS | feat(concurrency): Implement ResettableEvent for cooperative thread signaling |
-| 90e3eb9 | phase 2 | gate: PASS | feat(concurrency): Implement WorkerHeartbeatMonitor for failover detection |
-| a8d183b | phase 2 | gate: PASS | feat(concurrency): Implement WorkStealingPool for distributed queue balancing |
-| 61335c3 | phase 2 | gate: PASS | feat(concurrency): Implement DistributedLockSimulator with auto-renewing leases |
-| 9c09aa5 | phase 2 | gate: PASS | feat(concurrency): Implement BackoffThrottler for rate-adaptive concurrency backoff |
-| 699ac1a | phase 2 | gate: PASS | feat(concurrency): Implement AsyncResourcePool for pooled worker connections |
-| 7b4405c | phase 2 | gate: PASS | feat(concurrency): Implement PartitionLockCoordinator for partitioned queue isolation |
-| bf5345c | phase 2 | gate: PASS | feat(concurrency): Implement TaskCancellationCoordinator with cascading tokens |
-| 449cf2f | phase 2 | gate: PASS | feat(concurrency): Implement ThreadSafeQueue with backpressure blocking |
-| f028652 | phase 2 | gate: PASS | feat(concurrency): Implement DebounceThrottleCoordinator for event stabilization |
-| 68daf91 | phase 2 | gate: PASS | feat(concurrency): Implement WorkerPoolMetrics for saturation telemetry |
-| a3d2ce1 | phase 2 | gate: PASS | feat(concurrency): Implement TaskPriorityCoordinator with anti-starvation boost |
-| de9771d | phase 2 | gate: PASS | feat(concurrency): Implement GracefulShutdownCoordinator for ordered drains |
-| 24e91cb | phase 2 | gate: PASS | feat(concurrency): Implement AtomicCounter with compare-and-swap semantics |
-| 36a7f87 | phase 2 | gate: PASS | feat(concurrency): Implement ParallelTaskExecutor with bounded parallelism |
-| a2098ff | phase 2 | gate: PASS | feat(concurrency): Implement LeaseAutoRenewer for background heartbeat extensions |
-| a46cbdf | phase 2 | gate: PASS | feat(workflows): Implement ParallelBranchExecutor with fail-fast and wait-all semantics |
-| 0d3578a | phase 2 | gate: PASS | feat(workflows): Implement DynamicTaskGraphEvaluator with branch pruning |
-| 6515bdc | phase 2 | gate: PASS | feat(workflows): Implement WorkflowTimeoutPolicy for granular deadline enforcement |
-| 8049f11 | phase 2 | gate: PASS | feat(workflows): Implement StepRetryStrategy with typed error predicate matching |
-| dc7cfe2 | phase 2 | gate: PASS | feat(workflows): Implement SubworkflowInvoker for nested orchestrations |
-| 900098a | phase 2 | gate: PASS | feat(workflows): Implement WorkflowCompensationAuditLog for saga rollback tracing |
-| 15c7efa | phase 2 | gate: PASS | feat(workflows): Implement WorkflowStateCheckpoint for resume-from-failure execution |
-| 807cce0 | phase 2 | gate: PASS | feat(workflows): Implement WorkflowDependencyGraph for critical path DAG topological sorting |
-| 6ad649d | phase 2 | gate: PASS | feat(workflows): Implement TaskVariableResolver for template parameter injection |
-| 93b54e2 | phase 2 | gate: PASS | feat(workflows): Implement WorkflowExecutionGuard for pre-condition evaluation |
-| 86254ba | phase 2 | gate: PASS | feat(webhooks): Implement ExponentialBackoffDispatcher for resilient HTTP delivery |
-| 9677ec0 | phase 2 | gate: PASS | feat(webhooks): Implement WebhookSignatureRotator for dual-key secret rotation |
-| be37027 | phase 2 | gate: PASS | feat(webhooks): Implement WebhookDeadLetterVault for unroutable webhook persistence |
-| 1190cd7 | phase 2 | gate: PASS | feat(webhooks): Implement BatchWebhookNotifier for grouped payload notifications |
-| 26964c5 | phase 2 | gate: PASS | feat(webhooks): Implement WebhookPayloadTransformer for outbound schema mapping |
-| 80dc54a | phase 2 | gate: PASS | feat(security): Implement ScopedRBACOperator with hierarchical permission matrix |
-| c30298e | phase 2 | gate: PASS | feat(security): Implement PayloadHasher for deterministic message fingerprinting |
-| 50e5d42 | phase 2 | gate: PASS | feat(security): Implement TokenRevocationList for instant session invalidation |
-| 8cb0f78 | phase 2 | gate: PASS | feat(security): Implement SensitiveFieldMasker for PII sanitization in task logs |
-| 9f1a213 | phase 2 | gate: PASS | feat(observability): Implement SpanExporter for OpenTelemetry JSON export |
-| 4cb8157 | phase 2 | gate: PASS | feat(observability): Implement MetricHistogram with quantile percentile calculations |
-| d6360de | phase 2 | gate: PASS | feat(observability): Implement AnomalyDetector for dynamic error rate spike alerting |
-| 68ae46e | phase 2 | gate: PASS | feat(observability): Implement SamplingTraceFilter for rate-limited distributed tracing |
-| 87dd56b | phase 2 | gate: PASS | feat(observability): Implement StructuredAlertEmitter for threshold-based incident notifications |
-| c518150 | phase 2 | gate: PASS | feat(observability): Implement ContextPropagator for cross-boundary context retention |
-| 0a5066f | phase 2 | gate: PASS | feat(plugins): Implement CompressionPlugin with gzip base64 payload encoding |
-| 4b30827 | phase 2 | gate: PASS | feat(plugins): Implement MetricsCollectorPlugin for task lifecycle telemetry counters |
-| 0f4bbd4 | phase 2 | gate: PASS | feat(plugins): Implement AuditLogPlugin for immutable task mutation tracking |
-| c8c3388 | phase 2 | gate: PASS | feat(utils): Implement ConsistentHashRing with virtual node distribution |
-| b66f897 | phase 2 | gate: PASS | feat(utils): Implement MurmurHash3 for ultra-fast 32-bit hash generation |
-| 03106cf | phase 2 | gate: PASS | feat(utils): Implement ExponentialMovingAverage for smoothed latency metrics |
-| f460f32 | phase 2 | gate: PASS | feat(utils): Implement BitSet for space-efficient boolean flag storage |
-| 1098938 | phase 2 | gate: PASS | feat(utils): Implement DeepFreeze for runtime immutable payload protection |
-| 2ea9ba7 | phase 2 | gate: PASS | feat(utils): Implement FastPriorityQueue with min-heap performance optimization |
-| 06fc19d | phase 2 | gate: PASS | feat(utils): Implement CircularBuffer for high-speed bounded metrics logging |
-| 88098ec | phase 2 | gate: PASS | feat(core): Implement TaskExecutionPipeline with lifecycle middleware interception |
-| 25a1285 | phase 2 | gate: PASS | feat(core): Implement TaskFlowEngineFacade unifying storage, queue, and scheduler |
-| 430c71a | verification/hardening | gate: PASS | fix(bench): Standardize all 28 benchmark task packages with explicit F2P and multiple P2P verification suites |
+| 5efec91 | phase 2 | gate: PASS | fix: Retry off-by-one bug in RetryManager.canRetry() |
+| da1ba56 | phase 2 | gate: PASS | fix: Remove timing tolerance in TaskScheduler.shouldRun() |
+| 27801d8 | phase 2 | gate: PASS | fix: Add error handling in EventEmitter.emit() |
+| 665e868 | phase 2 | gate: PASS | fix: Strict state transition validation in StateTransitioner and TaskService |
+| b5243ba | phase 2 | gate: PASS | fix: Add duplicate prevention in RedisQueueAbstraction.enqueue() |
+| a7372fa | phase 2 | gate: PASS | fix: Add strict locking and fix active count drift in Worker |
+| 40bbf1c | phase 2 | gate: PASS | feat: Add task priority support |
+| 832f9a8 | phase 2 | gate: PASS | docs: Add Phase 0 comprehensive repository audit |
+| 48f946e | phase 2 | gate: PASS | docs: Add Phase 1 enhancement plan and roadmap |
+| 91d5875 | phase 2 | gate: PASS | build: Add core TypeScript, Jest, environment, and container configs |
+| 1787a18 | phase 2 | gate: PASS | feat(storage): Add in-memory storage, queue factory, middleware, and logging utilities |
+| a6bcb25 | phase 2 | gate: PASS | feat(api): Add TaskController, REST routing, and TaskHandlerRegistry |
+| be2772c | phase 2 | gate: PASS | feat(core): Add Application bootstrapping, healthcheck, and example script |
+| d781098 | verification/hardening | gate: PASS | test: Add baseline unit and integration test suite |
+| 106ea6c | phase 2 | gate: PASS | fix(core): Stabilize Task priority and deadline typing, WorkerLock resolution, and active count lifecycle |
+| e96b62f | verification/hardening | gate: PASS | docs: Add baseline architecture, API guides, and project specification documentation |
+| 83cc06c | verification/hardening | gate: PASS | docs: Update Commit Log with Phase 0 and baseline initialization commits |
+| 3a44496 | phase 2 | gate: PASS | feat(storage): Add SecondaryIndex for multi-dimensional task attribute querying |
+| e4715e5 | phase 2 | gate: PASS | feat(storage): Implement WALStorageEngine with CRC32 checksums, replay recovery, and snapshot compaction |
+| e875d8c | phase 2 | gate: PASS | feat(storage): Add IDatabase interface and WALDatabaseAdapter to DatabaseFactory |
+| e20312c | phase 2 | gate: PASS | feat(queue): Add VisibilityQueue with ACK/NACK two-phase visibility and DeadLetterQueue |
+| 73b1f12 | phase 2 | gate: PASS | feat(workflows): Implement WorkflowEngine with DAG topological validation, context propagation, and Saga compensations |
+| 5925df5 | phase 2 | gate: PASS | feat(scheduler): Implement CronParser and CronScheduler with misfire policies and deterministic scheduling |
+| 6be642b | phase 2 | gate: PASS | feat(concurrency): Add LeaseManager with fencing tokens, TokenBucketRateLimiter, and WorkerPoolAutoscaler |
+| e191e18 | phase 2 | gate: PASS | feat(webhooks): Add WebhookDispatcher with HMAC-SHA256 signature verification and CircuitBreaker |
+| d65797f | phase 2 | gate: PASS | feat(observability): Add Prometheus MetricsRegistry, W3C TraceContext propagation, and StructuredLogger |
+| d61fca1 | phase 2 | gate: PASS | feat(security): Add ApiKeyManager with role authorization and TenantQuotaManager |
+| a1e2231 | phase 2 | gate: PASS | feat(cli): Add StatusDashboard HTML renderer and TaskFlowCLI diagnostic tool |
+| 5d1a5b5 | phase 2 | gate: PASS | feat(plugins): Add PluginManager with lifecycle hooks and DeduplicationPlugin |
+| 9a6788c | phase 2 | gate: PASS | feat(api): Integrate Prometheus metrics and StatusDashboard into Express app with API integration tests |
+| a38eca7 | phase 2 | gate: PASS | fix(workers): Ensure deterministic timer cleanup via executeWithTimeout to prevent event loop leaks |
+| 72796d4 | phase 2 | gate: PASS | test(error): Add comprehensive error handling and fault resilience test suite |
+| ccb4628 | phase 2 | gate: PASS | test(boundary): Add boundary and edge condition test suite for queues, cron, limits, and DAGs |
+| e60193a | phase 2 | gate: PASS | test(e2e): Add full system end-to-end integration and metrics pipeline test suite |
+| eac6dca | phase 2 | gate: PASS | test(fuzz): Add property-based fuzz test suite for cron expressions and DAG topological execution |
+| c3205f3 | phase 2 | gate: PASS | test(coverage): Add comprehensive unit tests for WebhookDispatcher and WALDatabaseAdapter |
+| d94ab8f | phase 2 | gate: PASS | docs(bench): Author internal-bench/defects.yaml catalog with 28 targeted engineering defects across 12 categories |
+| 1f86a1f | phase 2 | gate: PASS | feat(bench): Package all 28 defects into Sand-style benchmark tasks with instructions and verification specs |
+| 76541ea | phase 2 | gate: PASS | docs: Author comprehensive README.md and BENCHMARK_NOTES.md detailing system architecture and evaluation |
+| 2e5a5a0 | phase 2 | gate: PASS | docs: Add CHANGELOG.md and CONTRIBUTING.md documenting project releases and standards |
+| 8df353b | phase 2 | gate: PASS | docs: Finalize ENHANCEMENT_PLAN.md commit log and benchmark phase milestones |
+| fc6a0d0 | phase 2 | gate: PASS | feat(storage): Implement probabilistic BloomFilter for rapid task deduplication checks |
+| a6c4253 | phase 2 | gate: PASS | feat(storage): Implement high-performance bounded LRUCache for task metadata |
+| 2402755 | phase 2 | gate: PASS | feat(core): Implement JitteredBackoff with full, equal, and decorrelated jitter strategies |
+| 797a172 | phase 2 | gate: PASS | feat(concurrency): Implement SlidingWindowRateLimiter for sliding-log rate control |
+| 917a222 | phase 2 | gate: PASS | feat(queue): Implement binary PriorityHeap with FIFO tie-breaking for O(log n) task enqueuing |
+| 7f0e850 | phase 2 | gate: PASS | feat(security): Implement SchemaValidator for declarative task payload verification |
+| 93a6d70 | phase 2 | gate: PASS | feat(queue): Implement fixed-size RingBuffer for ultra-low allocation worker dispatch |
+| 72224a0 | phase 2 | gate: PASS | feat(plugins): Implement AES-256-GCM EncryptionPlugin for sensitive payload protection |
+| 1f6e14d | phase 2 | gate: PASS | feat(events): Implement EventStore for immutable audit logging and event sourcing |
+| 0c3514a | phase 2 | gate: PASS | feat(observability): Implement comprehensive HealthRegistry with degraded state isolation |
+| e06d625 | phase 2 | gate: PASS | feat(observability): Add MemoryWatcher for runtime heap allocation monitoring |
+| 84c745a | phase 2 | gate: PASS | feat(concurrency): Implement AsyncSemaphore with FIFO waiter queueing |
+| f23a56f | phase 2 | gate: PASS | feat(concurrency): Implement AsyncMutex with runExclusive helper |
+| b066325 | phase 2 | gate: PASS | feat(concurrency): Implement writer-priority ReadWriteLock |
+| 6e2d283 | phase 2 | gate: PASS | feat(scheduler): Implement Hashed Hierarchical TimerWheel for sub-millisecond timer dispatch |
+| b955e48 | phase 2 | gate: PASS | feat(utils): Implement SnowflakeIdGenerator for ordered 64-bit cluster unique IDs |
+| 3573c7c | phase 2 | gate: PASS | feat(storage): Implement MemTable with ordered key scanning and byte size tracking |
+| 67bc63a | phase 2 | gate: PASS | feat(storage): Implement SSTableReader with binary search and range scanning |
+| f37aac6 | phase 2 | gate: PASS | feat(storage): Implement KeyPrefixIterator for namespace-aware scanning |
+| 0a3b73b | phase 2 | gate: PASS | feat(storage): Implement SnapshotManager for point-in-time state recovery |
+| ef304b8 | phase 2 | gate: PASS | feat(storage): Implement TombstoneCompactor for expired deletion purging |
+| 52d1783 | phase 2 | gate: PASS | feat(storage): Implement BinarySerializer with compact type encoding |
+| da6c23c | phase 2 | gate: PASS | feat(storage): Implement ChecksumValidator with Adler32 and CRC32 support |
+| 071bab8 | phase 2 | gate: PASS | feat(storage): Implement FileLockCoordinator for cooperative process locking |
+| 0bc9598 | phase 2 | gate: PASS | feat(storage): Implement ReadRepairCoordinator for replica consistency healing |
+| c6396a8 | phase 2 | gate: PASS | feat(storage): Implement BlockCompressionCodec with run-length encoding |
+| 7152730 | phase 2 | gate: PASS | feat(storage): Implement TransactionIsolationManager for conflict detection |
+| ce927ea | phase 2 | gate: PASS | feat(storage): Implement TwoPhaseCommitCoordinator for atomic multi-shard transactions |
+| 343ea07 | phase 2 | gate: PASS | feat(storage): Implement WriteBatchBuffer for amortized disk writes |
+| 09b7b46 | phase 2 | gate: PASS | feat(storage): Implement IndexCursor for bidirectional range traversal |
+| 00f35c0 | phase 2 | gate: PASS | feat(storage): Implement TieredCacheManager for L1/L2 storage hierarchy |
+| 12e0736 | phase 2 | gate: PASS | feat(storage): Implement RetentionPolicyEngine for automatic data expiration |
+| 8945745 | phase 2 | gate: PASS | feat(storage): Implement StorageMetricsCollector for I/O and latency telemetry |
+| 100ea1c | phase 2 | gate: PASS | feat(storage): Implement RecoveryJournal for crash consistency replay |
+| b185de4 | phase 2 | gate: PASS | feat(storage): Implement HashIndex for O(1) in-memory key indexing |
+| 5bb3fe9 | phase 2 | gate: PASS | feat(storage): Implement DiskSpaceReclaimer for temporary file cleanup |
+| 13fd858 | phase 2 | gate: PASS | feat(queue): Implement DelayQueue with timestamp-ordered execution |
+| 008353f | phase 2 | gate: PASS | feat(queue): Implement BatchQueueConsumer for high-throughput batch pulling |
+| fa6f95a | phase 2 | gate: PASS | feat(queue): Implement PriorityPartitionedQueue for fair multi-partition priority dispatch |
+| 9ba5660 | phase 2 | gate: PASS | feat(queue): Implement QueueBackpressureController for admission flow control |
+| 81c87a2 | phase 2 | gate: PASS | feat(queue): Implement DLQReprocessor with max redelivery quarantine |
+| 4f4724d | phase 2 | gate: PASS | feat(queue): Implement FairShareScheduler for multi-tenant round-robin servicing |
+| fe48d01 | phase 2 | gate: PASS | feat(queue): Implement CircularRingQueue for zero-allocation task buffering |
+| bb38850 | phase 2 | gate: PASS | feat(queue): Implement MessageDeduplicator with sliding expiration window |
+| 300e49e | phase 2 | gate: PASS | feat(queue): Implement FifoTopicChannel for ordered stream partitioning |
+| ccac410 | phase 2 | gate: PASS | feat(queue): Implement PoisonMessageQuarantine for defective payload isolation |
+| ff6d895 | phase 2 | gate: PASS | feat(scheduler): Implement CronCalendar with holiday and blackout window exclusions |
+| 726f6e7 | phase 2 | gate: PASS | feat(scheduler): Implement DynamicScheduleTrigger for runtime cadence modification |
+| 37c6bef | phase 2 | gate: PASS | feat(scheduler): Implement JitteredIntervalScheduler to eliminate herd thundering |
+| 212c4b7 | phase 2 | gate: PASS | feat(scheduler): Implement ScheduleDriftDetector for clock skew analysis |
+| 2fa5fce | phase 2 | gate: PASS | feat(scheduler): Implement MissedExecutionPolicy for flexible catch-up handling |
+| e29f5cc | phase 2 | gate: PASS | feat(scheduler): Implement TimeZoneSupportHelper for accurate UTC offset calculations |
+| 01f46bf | phase 2 | gate: PASS | feat(scheduler): Implement RecurringJobPipeline for sequenced periodic routines |
+| e0a5cd7 | phase 2 | gate: PASS | feat(scheduler): Implement AdaptiveTimerWheel for dynamic tick granularity |
+| b63311b | phase 2 | gate: PASS | feat(scheduler): Implement ExecutionWindowGuard for maintenance timeframe gating |
+| 7a1f5b4 | phase 2 | gate: PASS | feat(concurrency): Implement CountDownLatch for concurrent task rendezvous |
+| 4673c95 | phase 2 | gate: PASS | feat(concurrency): Implement StripedLock for fine-grained key concurrency |
+| fb8f4c2 | phase 2 | gate: PASS | feat(concurrency): Implement AdaptiveConcurrencyLimiter with AIMD adjustment |
+| de70edb | phase 2 | gate: PASS | feat(concurrency): Implement ResettableEvent for cooperative thread signaling |
+| f9d5a63 | phase 2 | gate: PASS | feat(concurrency): Implement WorkerHeartbeatMonitor for failover detection |
+| 1f9d1a9 | phase 2 | gate: PASS | feat(concurrency): Implement WorkStealingPool for distributed queue balancing |
+| 50d0f51 | phase 2 | gate: PASS | feat(concurrency): Implement DistributedLockSimulator with auto-renewing leases |
+| 6e9737d | phase 2 | gate: PASS | feat(concurrency): Implement BackoffThrottler for rate-adaptive concurrency backoff |
+| 7e1dfb9 | phase 2 | gate: PASS | feat(concurrency): Implement AsyncResourcePool for pooled worker connections |
+| d5570b1 | phase 2 | gate: PASS | feat(concurrency): Implement PartitionLockCoordinator for partitioned queue isolation |
+| 16f0cef | phase 2 | gate: PASS | feat(concurrency): Implement TaskCancellationCoordinator with cascading tokens |
+| 0365c22 | phase 2 | gate: PASS | feat(concurrency): Implement ThreadSafeQueue with backpressure blocking |
+| 010cc9e | phase 2 | gate: PASS | feat(concurrency): Implement DebounceThrottleCoordinator for event stabilization |
+| d9e7b39 | phase 2 | gate: PASS | feat(concurrency): Implement WorkerPoolMetrics for saturation telemetry |
+| 9445d4e | phase 2 | gate: PASS | feat(concurrency): Implement TaskPriorityCoordinator with anti-starvation boost |
+| 29e736f | phase 2 | gate: PASS | feat(concurrency): Implement GracefulShutdownCoordinator for ordered drains |
+| c217bcc | phase 2 | gate: PASS | feat(concurrency): Implement AtomicCounter with compare-and-swap semantics |
+| 039049b | phase 2 | gate: PASS | feat(concurrency): Implement ParallelTaskExecutor with bounded parallelism |
+| d33b1ed | phase 2 | gate: PASS | feat(concurrency): Implement LeaseAutoRenewer for background heartbeat extensions |
+| 57dfdcc | phase 2 | gate: PASS | feat(workflows): Implement ParallelBranchExecutor with fail-fast and wait-all semantics |
+| 52594c1 | phase 2 | gate: PASS | feat(workflows): Implement DynamicTaskGraphEvaluator with branch pruning |
+| bd37941 | phase 2 | gate: PASS | feat(workflows): Implement WorkflowTimeoutPolicy for granular deadline enforcement |
+| 142562c | phase 2 | gate: PASS | feat(workflows): Implement StepRetryStrategy with typed error predicate matching |
+| 34c0b7c | phase 2 | gate: PASS | feat(workflows): Implement SubworkflowInvoker for nested orchestrations |
+| 90b1ac0 | phase 2 | gate: PASS | feat(workflows): Implement WorkflowCompensationAuditLog for saga rollback tracing |
+| e25a0ba | phase 2 | gate: PASS | feat(workflows): Implement WorkflowStateCheckpoint for resume-from-failure execution |
+| d0b6a3a | phase 2 | gate: PASS | feat(workflows): Implement WorkflowDependencyGraph for critical path DAG topological sorting |
+| bda8d85 | phase 2 | gate: PASS | feat(workflows): Implement TaskVariableResolver for template parameter injection |
+| 67cb125 | phase 2 | gate: PASS | feat(workflows): Implement WorkflowExecutionGuard for pre-condition evaluation |
+| 7cbe702 | phase 2 | gate: PASS | feat(webhooks): Implement ExponentialBackoffDispatcher for resilient HTTP delivery |
+| 163b06f | phase 2 | gate: PASS | feat(webhooks): Implement WebhookSignatureRotator for dual-key secret rotation |
+| 1a125ba | phase 2 | gate: PASS | feat(webhooks): Implement WebhookDeadLetterVault for unroutable webhook persistence |
+| ffb8dea | phase 2 | gate: PASS | feat(webhooks): Implement BatchWebhookNotifier for grouped payload notifications |
+| e8add86 | phase 2 | gate: PASS | feat(webhooks): Implement WebhookPayloadTransformer for outbound schema mapping |
+| a4633ad | phase 2 | gate: PASS | feat(security): Implement ScopedRBACOperator with hierarchical permission matrix |
+| ea2a789 | phase 2 | gate: PASS | feat(security): Implement PayloadHasher for deterministic message fingerprinting |
+| 7d4f68e | phase 2 | gate: PASS | feat(security): Implement TokenRevocationList for instant session invalidation |
+| e703ab4 | phase 2 | gate: PASS | feat(security): Implement SensitiveFieldMasker for PII sanitization in task logs |
+| 922f30b | phase 2 | gate: PASS | feat(observability): Implement SpanExporter for OpenTelemetry JSON export |
+| 19ee6f2 | phase 2 | gate: PASS | feat(observability): Implement MetricHistogram with quantile percentile calculations |
+| 53d8238 | phase 2 | gate: PASS | feat(observability): Implement AnomalyDetector for dynamic error rate spike alerting |
+| 3515aac | phase 2 | gate: PASS | feat(observability): Implement SamplingTraceFilter for rate-limited distributed tracing |
+| 5f82d7b | phase 2 | gate: PASS | feat(observability): Implement StructuredAlertEmitter for threshold-based incident notifications |
+| 00ba0d4 | phase 2 | gate: PASS | feat(observability): Implement ContextPropagator for cross-boundary context retention |
+| 588b3a3 | phase 2 | gate: PASS | feat(plugins): Implement CompressionPlugin with gzip base64 payload encoding |
+| 3127f93 | phase 2 | gate: PASS | feat(plugins): Implement MetricsCollectorPlugin for task lifecycle telemetry counters |
+| 8e768ab | phase 2 | gate: PASS | feat(plugins): Implement AuditLogPlugin for immutable task mutation tracking |
+| 537ecf9 | phase 2 | gate: PASS | feat(utils): Implement ConsistentHashRing with virtual node distribution |
+| 60c4003 | phase 2 | gate: PASS | feat(utils): Implement MurmurHash3 for ultra-fast 32-bit hash generation |
+| 7a26570 | phase 2 | gate: PASS | feat(utils): Implement ExponentialMovingAverage for smoothed latency metrics |
+| fcfdd96 | phase 2 | gate: PASS | feat(utils): Implement BitSet for space-efficient boolean flag storage |
+| 44148cc | phase 2 | gate: PASS | feat(utils): Implement DeepFreeze for runtime immutable payload protection |
+| 8df9803 | phase 2 | gate: PASS | feat(utils): Implement FastPriorityQueue with min-heap performance optimization |
+| 0a57398 | phase 2 | gate: PASS | feat(utils): Implement CircularBuffer for high-speed bounded metrics logging |
+| 73eec35 | phase 2 | gate: PASS | feat(core): Implement TaskExecutionPipeline with lifecycle middleware interception |
+| 5653043 | phase 2 | gate: PASS | feat(core): Implement TaskFlowEngineFacade unifying storage, queue, and scheduler |
+| 5e44ac4 | verification/hardening | gate: PASS | fix(bench): Standardize all 28 benchmark task packages with explicit F2P and multiple P2P verification suites |
+| 9a3d377 | verification/hardening | gate: PASS | docs: Author FINAL_VERIFICATION.md comprehensive benchmark audit and acceptance report |
