@@ -17,12 +17,26 @@ export class ConsistentHashRing {
   }
 
   public addNode(node: string): void {
+    this.removeNode(node); // Avoid duplicate entries
     for (let i = 0; i < this.vnodes; i++) {
       const vKey = this.hash(`${node}#${i}`);
       this.ring.set(vKey, node);
       this.sortedKeys.push(vKey);
     }
     this.sortedKeys.sort((a, b) => a - b);
+  }
+
+  public removeNode(node: string): void {
+    const keysToRemove: number[] = [];
+    for (const [key, n] of this.ring.entries()) {
+      if (n === node) {
+        keysToRemove.push(key);
+      }
+    }
+    for (const k of keysToRemove) {
+      this.ring.delete(k);
+    }
+    this.sortedKeys = Array.from(this.ring.keys()).sort((a, b) => a - b);
   }
 
   public getNode(key: string): string | undefined {
@@ -35,5 +49,14 @@ export class ConsistentHashRing {
       }
     }
     return this.ring.get(this.sortedKeys[0]);
+  }
+
+  public getNodes(): string[] {
+    return Array.from(new Set(this.ring.values()));
+  }
+
+  public clear(): void {
+    this.ring.clear();
+    this.sortedKeys = [];
   }
 }
