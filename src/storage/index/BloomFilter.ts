@@ -39,6 +39,20 @@ export class BloomFilter {
     return true;
   }
 
+  getFilter(): { size: number; hashCount: number; bits: number[] } {
+    return {
+      size: this.size,
+      hashCount: this.hashCount,
+      bits: Array.from(this.bitArray)
+    };
+  }
+
+  setFilter(filter: { size: number; hashCount: number; bits: number[] }): void {
+    this.size = filter.size;
+    this.hashCount = filter.hashCount;
+    this.bitArray = new Uint8Array(filter.bits);
+  }
+
   clear(): void {
     this.bitArray.fill(0);
   }
